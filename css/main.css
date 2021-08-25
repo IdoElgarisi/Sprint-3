@@ -1,3 +1,5 @@
 @import url('./parts/base.css');
 @import url('./cmps/app-header.css');
 @import url('./cmps/app-home.css');
+
+@import url('./apps/mail/email-app.css');
