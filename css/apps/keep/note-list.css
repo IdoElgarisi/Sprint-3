@@ -1,6 +1,42 @@
-.notes-list{
+.notes-list {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    /* justify-content: space-around; */
+    flex-wrap: wrap;
+    gap: 5px
 
+}
+
+.notes-list>* {
+    background-color: rgb(161, 193, 221);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.notes-list img {
+    height: 100px;
+}
+.clean-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.clean-list button{
+    border: none;
+    color: rgb(102, 102, 102);
+    background-color: unset;
+    cursor: pointer;
+}
+.clean-list li{
+    display: flex;
+    align-items: center;
+}
+.notes-list textarea{
+    background-color: unset;
+    border:none;
+    resize: none;
+
+}
+.notes-list textarea.done-todo{
+    text-decoration: line-through;
 }

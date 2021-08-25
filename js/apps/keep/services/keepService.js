@@ -1,7 +1,6 @@
-// import { utilService } from './util.service.js'
-// import { storageService } from '../services/storageService'
 
 import { storageService } from '../../../services/storageService.js'
+import { utilService } from '../../../services/util.service.js'
 
 
 const KEY = 'notes'
@@ -11,7 +10,8 @@ export const keepService = {
     query,
     updateNote,
     removeNote,
-    addNote
+    addNote,
+    updateDoneTodo
 }
 
 function query(filterBy) {
@@ -32,8 +32,21 @@ function addNote() {
 }
 
 
+function updateDoneTodo(note, newTodo) {
+    const { todos } = note.info
+    //     const note = notes.find(note => noteId === note.id)
+    var todoIdx = todos.findIndex(todo => todo.id === newTodo.id)
+    todos[todoIdx].isDone = !todos[todoIdx].isDone
+    // console.log(todoIdx);
 
 
+    // const todoIdx = todos.indexOf(todo)
+    // todos[todoIdx].doneAt = !todos[todoIdx].doneAt ? new Date() : null
+    note.info.todos = todos
+    console.log(note.info.todos);
+    _saveToStorage()
+    return Promise.resolve(todos)
+}
 function createNotes() {
     var notes = _loadFromStorage()
     if (notes) return notes;
@@ -50,7 +63,7 @@ function createNotes() {
             id: "n102",
             type: "note-img",
             info: {
-                url: "http://some-img/me",
+                url: "https://www.iucn.org/sites/dev/files/styles/850x500_no_menu_article/public/blue-morpho-350x150-matthiasfr-pixabay-crop.jpg?itok=Y8DXROpH",
                 title: "Bobi and Me"
             },
             style: {
@@ -67,6 +80,45 @@ function createNotes() {
                     { txt: "Coding power", doneAt: 187111111 }
                 ]
             }
+        },
+        {
+            id: "n104",
+            type: "note-txt",
+            isPinned: true,
+            info: {
+                txt: "Common Lets Read!"
+            }
+        },
+        {
+            id: "n105",
+            type: "note-img",
+            info: {
+                url: "https://img.etimg.com/photo/msid-68721421,quality-100/nature.jpg",
+                title: "Bobi and Me"
+            },
+            style: {
+                backgroundColor: "#00d"
+            }
+        },
+        {
+            id: "n106",
+            type: "note-video",
+            isPinned: false,
+            info: {
+                youtubeId: "qcSSpoTrbXk"
+            }
+        },
+        {
+            id: "n107",
+            type: "note-todo",
+            isPinned: false,
+            info: {
+                todos: [
+                    { id: utilService.makeId(), txt: 'Do Homework', isDone: true },
+                    { id: utilService.makeId(), txt: 'Need Make Something', isDone: false },
+                    { id: utilService.makeId(), txt: 'Need Finish css', isDone: true },
+                    { id: utilService.makeId(), txt: 'Finish Play', isDone: true }]
+            }
         }
     ];
     storageService.saveToStorage(KEY, notes)
@@ -77,7 +129,7 @@ function createNotes() {
 
 
 function _loadFromStorage() {
-    storageService.loadFromStorage(KEY)
+    return storageService.loadFromStorage(KEY)
 }
 function _saveToStorage() {
     storageService.saveToStorage(KEY, notes)
