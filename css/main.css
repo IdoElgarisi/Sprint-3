@@ -3,5 +3,6 @@
 @import url('./cmps/app-header.css');
 @import url('./cmps/app-home.css');
 @import url('../css/apps/keep/note-list.css');
+@import url('../css/apps/keep/add-note.css');
 
 @import url('./apps/mail/email-app.css');
