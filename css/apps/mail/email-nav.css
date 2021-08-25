@@ -1,0 +1,49 @@
+.mail-nav {
+    background-color: rgb(221, 221, 221);
+    background-color: rgb(221, 221, 221);
+    width: 200px;
+    height: 100vh;
+    padding: 5px;
+}
+
+.mail-nav-bar {
+    padding: 5px;
+}
+.mail-nav-bar li:hover {
+    background-color: rgb(196, 195, 195);
+}
+
+.mail-nav-bar>* {
+    list-style: none;
+    text-decoration: none;
+    line-height: 2rem;
+    border-bottom: 1px solid gray;
+    font-size: 1.2rem;
+}
+
+.new-mail-btn {
+    padding: 5px;
+    height: 50px;
+    width: 150px;
+    border-radius: 29px;
+    border: none;
+    align-items: center;
+}
+
+.new-mail-btn:hover {
+    position: relative;
+    left: 2px;
+    top: 1px;
+}
+
+.add-img {
+    width: 30px;
+    height: 30px;
+    background-image: url('../../../img/add-mail.png');
+}
+
+.new-mail-btn p {
+    padding-inline-start: 10px;
+    font-size: 1.2rem;
+    margin: 0;
+}
