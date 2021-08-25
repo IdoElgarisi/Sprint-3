@@ -1,0 +1,16 @@
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    box-sizing: border-box;
+    font-family: lato regular;
+    color: #111;
+
+}
+
+@font-face {
+    font-family: lato regular;
+    src: url('/fonts/Lato-Regular.ttf');
+}

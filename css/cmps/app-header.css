@@ -1,0 +1,28 @@
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(255, 255, 97);
+}
+.logo a{
+    text-decoration: none;
+    color: #222;
+    font-size: 2em;
+}
+
+.main-nav-bar {
+    list-style: none;
+    width: 200px;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.main-nav-bar li>* {
+    text-decoration: none;
+    color: gray;
+}
+li a.active{
+   color: #222; 
+}
