@@ -1,4 +1,9 @@
 @import url('./parts/base.css');
 @import url('./cmps/app-header.css');
 @import url('./cmps/app-home.css');
+<<<<<<< HEAD
 @import url('../css/apps/keep/note-list.css');
+=======
+
+@import url('./apps/mail/email-app.css');
+>>>>>>> a18fe22dc857ee3dea3ce7a3080576412bdbbb19

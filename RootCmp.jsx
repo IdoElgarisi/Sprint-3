@@ -1,7 +1,7 @@
 const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM
 import { KeepApp } from './js/apps/keep/pages/Keep.jsx'
-import { EmailApp } from './js/apps/mail/Email.jsx'
+import { EmailApp } from './js/apps/mail//pages/Email.jsx'
 import { AppHeader } from './js/cmps/AppHeader.jsx'
 import { Home } from './js/pages/Home.jsx';
 

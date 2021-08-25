@@ -1,0 +1,42 @@
+.mail-details p {
+    margin: 0;
+}
+
+.mail-info {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+    align-items: flex-end;
+}
+
+.mail-body {
+    width: 250px;
+}
+
+.mail-subject {
+    font-weight: 600;
+}
+
+.mail-body {
+    font-weight: 300;
+}
+
+.mail-edit-btns {
+    text-align: end;
+    display: none;
+}
+
+.mail-edit-btns>* {
+    margin-inline-end: 10px;
+}
+
+.mail-info:hover .mail-edit-btns {
+    display: block;
+}
+
+.mail-info:hover .mail-date {
+    display: none;
+}
+.mail-date{
+    text-align: end;
+}

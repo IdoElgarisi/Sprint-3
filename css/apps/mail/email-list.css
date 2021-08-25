@@ -1,0 +1,9 @@
+.email-list {
+    width: 450px;
+    border: 1px solid gray;
+    margin: 0 auto;
+}
+
+.email-list thead td {
+    border: 1px solid gray;
+}
