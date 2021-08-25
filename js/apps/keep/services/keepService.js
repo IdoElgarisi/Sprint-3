@@ -1,7 +1,7 @@
 // import { utilService } from './util.service.js'
 // import { storageService } from '../services/storageService'
 
-import { storageService } from '../../../services/storage.service.js'
+import { storageService } from '../../../services/storagService.js'
 
 
 const KEY = 'notes'

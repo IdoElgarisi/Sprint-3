@@ -1,4 +1,4 @@
-import { storageService } from '../../../services/storage.service.js'
+// import { storageService } from '../../../services/storagService.js'
 
 export const emailService = {
     query,
@@ -57,7 +57,7 @@ function deleteMail(mailId) {
         return mailId === mail.id
     })
     gMails.splice(mailIdx, 1)
-    _saveMailsToStorage();
+    // _saveMailsToStorage();
     return Promise.resolve()
 }
 
