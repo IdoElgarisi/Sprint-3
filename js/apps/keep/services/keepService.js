@@ -1,7 +1,7 @@
 // import { utilService } from './util.service.js'
 // import { storageService } from '../services/storageService'
 
-import { storageService } from '../../../services/storage.service.js'
+import { storageService } from '../../../services/storageService.js'
 
 
 const KEY = 'notes'
@@ -19,15 +19,15 @@ function query(filterBy) {
     return notes
 }
 
-function updateNote(noteId){
-    
-}
-
-function removeNote(noteId){
+function updateNote(noteId) {
 
 }
 
-function addNote(){
+function removeNote(noteId) {
+
+}
+
+function addNote() {
 
 }
 
