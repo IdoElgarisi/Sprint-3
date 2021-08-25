@@ -1,0 +1,25 @@
+export class EmailSort extends React.Component {
+    state = {
+        sortBy: ' ',
+    };
+
+    handleChange = (ev) => {
+        const value = ev.target.value;
+        this.setState({ sortBy:value } , () => {
+            this.props.onSetSort(this.state.sortBy)
+        });
+    };
+ 
+
+    render() {
+        return (
+            <section className="mails-filter">
+                <label htmlFor="sortBy">Sort: </label>
+                <select name="sortBy" onChange={this.handleChange} >
+                    <option value="newest" >Newest</option>
+                    <option value="oldest">Oldest</option>
+                </select>
+            </section>
+        )
+    }
+}

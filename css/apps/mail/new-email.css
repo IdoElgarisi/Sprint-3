@@ -1,0 +1,27 @@
+/* .new-mail-layout {
+    max-width: 380px;
+}
+
+.new-mail-display {
+    width: 300px;
+    margin: 0 auto;
+    margin-block-start: 50px;
+    height: 200px;
+    border: 1px solid gray;
+}
+
+.mail-header {
+    display: flex;
+    background-color: #3a3a3a;
+}
+
+.mail-header>* {
+    color: white;
+    padding: 5px 0;
+}
+
+.mail-header h4 {
+    font-weight: 400;
+    margin: 0;
+    width: 280px;
+} */

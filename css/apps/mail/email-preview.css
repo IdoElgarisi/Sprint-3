@@ -1,3 +1,7 @@
+.mails-list-header{
+gap: 30px;
+align-items: center;
+}
 .mail-details p {
     margin: 0;
 }
@@ -10,11 +14,20 @@
 }
 
 .mail-body {
-    width: 250px;
+    width: 350px;
 }
 
 .mail-subject {
     font-weight: 600;
+}
+
+.mail-subject.read {
+    color: rgb(109, 109, 109);
+}
+
+.mail-subject.unread {
+    color: #111;
+
 }
 
 .mail-body {
@@ -28,6 +41,7 @@
 
 .mail-edit-btns>* {
     margin-inline-end: 10px;
+    border: none;
 }
 
 .mail-info:hover .mail-edit-btns {
@@ -37,6 +51,11 @@
 .mail-info:hover .mail-date {
     display: none;
 }
-.mail-date{
+
+.mail-date {
     text-align: end;
+}
+
+.fa-envelope-open {
+    color: gray;
 }
