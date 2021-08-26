@@ -87,13 +87,7 @@ function updateDoneTodo(note, newTodo) {
     return Promise.resolve(todos)
 }
 function createNotes() {
-<<<<<<< HEAD
     var notes = _loadFromStorage()
-=======
-    // console.log('check');
-    var notes = _loadFromStorage()
-    // console.log(notes);
->>>>>>> 143fddfba9cfb5dd1d9d25196f12799853d5dc2a
     if (notes) return notes;
     notes = [
         {
