@@ -19,15 +19,18 @@ function query(filterBy) {
     return notes
 }
 
-function updateNote(noteId) {
-
+function updateNote(note) {
 }
 
 function removeNote(noteId) {
 
 }
 
-function addNote() {
+function addNote(note) {
+    note.id = utilService.makeId()
+    notes.unshift(note)
+    _saveToStorage()
+    return Promise.resolve()
 
 }
 
@@ -48,7 +51,9 @@ function updateDoneTodo(note, newTodo) {
     return Promise.resolve(todos)
 }
 function createNotes() {
+    console.log('check');
     var notes = _loadFromStorage()
+    console.log(notes);
     if (notes) return notes;
     notes = [
         {

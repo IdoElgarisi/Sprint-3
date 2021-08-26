@@ -32,7 +32,6 @@ export class NoteTodo extends React.Component {
     render() {
         const { todos, loadNotes } = this.state
         if (!todos) return <div>loding..</div>
-        console.log(loadNotes);
         return (
             <section className="todos-container">
                 <ul className="clean-list ">

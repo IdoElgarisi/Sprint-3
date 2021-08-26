@@ -9,13 +9,15 @@ export class KeepApp extends React.Component {
     }
 
     componentDidMount() {
-        const notes = this.loadNotes()
+        const notes = keepService.query()
         this.setState({ notes })
     }
 
 
     loadNotes = () => {
-        return keepService.query()
+        const notes = keepService.query()
+        this.setState({ notes })
+
     }
 
 
@@ -24,8 +26,8 @@ export class KeepApp extends React.Component {
         if (!notes) return <div>loading..</div>
         return (
             <section>
-                <AddNote />
-                <NotesList notes={notes}  loadNotes={this.loadNotes}/>
+                <AddNote loadNotes={this.loadNotes} />
+                <NotesList notes={notes} loadNotes={this.loadNotes} />
             </section>
         )
     }

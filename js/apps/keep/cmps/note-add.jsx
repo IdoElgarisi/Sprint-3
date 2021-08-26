@@ -1,10 +1,12 @@
 // import { NotesList } from "../cmps/note-list.jsx";
-// import { keepService } from "../services/keepService.js";
+import { keepService } from "../services/keepService.js";
 
 export class AddNote extends React.Component {
 
     state = {
-        txtInput: ''
+        txtInput: '',
+        noteType: 'note-txt'
+
     }
 
     componentDidMount() {
@@ -17,26 +19,79 @@ export class AddNote extends React.Component {
         this.setState({ txtInput: value })
     }
 
+    onSelectType = (noteType) => {
+        // console.log(noteType);
+        this.setState({ noteType })
+    }
+
+    onAddNote = (ev) => {
+        ev.preventDefault()
+        const { loadNotes } = this.props
+        const { noteType, txtInput } = this.state
+        const newNote = {}
+        if (noteType === 'note-txt') {
+            newNote.type = noteType
+            newNote.isPinned = false
+            newNote.info = { txt: txtInput }
+            newNote.style = { backgroundColor: 'lightblue' }
+            keepService.addNote(newNote)
+                .then(() => {
+                    loadNotes()
+
+                    // expected output: "Success!"
+                });
+        }
+        else if (noteType === 'note-img') {
+            newNote.type = noteType
+            newNote.isPinned = false
+            newNote.info = { txt: txtInput }
+            newNote.style = { backgroundColor: 'lightblue' }
+            keepService.addNote(newNote)
+                .then(() => {
+                    loadNotes()
+
+                    // expected output: "Success!"
+                });
+        }
+        this.setState({ txtInput: '' })
+    }
+    getPlaceHolder = () => {
+        const { noteType } = this.state
+        switch (noteType) {
+            case 'note-txt':
+                return 'Enter Text'
+            case 'note-img':
+                return 'Enter Img Url'
+            case 'note-video':
+                return 'Enter Youtube Url'
+            case 'note-todo':
+                return 'Enter Todos sepreate ,'
+            default:
+                return ''
+        }
+
+    }
+
+
     render() {
-        const { txtInput } = this.state
+        const { txtInput, noteType } = this.state
+        const { loadNotes } = this.props
+        console.log(noteType);
         // if (!notes) return <div>loading..</div>
         return (
             <section>
                 <div className="add-note">
                     <form onSubmit={this.onAddNote}>
                         <label htmlFor="add-note"></label>
-                        <input type="text" name="txtInput" placeholder='add your note!' value={txtInput} id="add-note" onChange={this.handleChange} autoFocus />
+                        <input type="text" name="txtInput" placeholder={this.getPlaceHolder()} value={txtInput} id="add-note" onChange={this.handleChange} autoFocus />
                         <button className="add-note-btn fa fa-far fa-plus-square"></button>
                     </form>
                     <div className="note-type-container">
-                        <button className="fa fas fa-font"></button>
-                        <button className="fa fas fa-image"></button>
-                        <button className="fa fas fa-youtube"></button>
-                        <button className="fa fas fa-list-ul"></button>
-                        {/* <button onClick={() => this.onSelectType('NoteText')} className={`fas fa-font clean-btn ${noteType === 'NoteText' ? 'active-type' : ''} `}></button>
-                        <button onClick={() => this.onSelectType('NoteImg')} className={`far fa-image clean-btn ${noteType === 'NoteImg' ? 'active-type' : ''}`}></button>
-                        <button onClick={() => this.onSelectType('NoteVideo')} className={`fab fa-youtube clean-btn ${noteType === 'NoteVideo' ? 'active-type' : ''}`}></button>
-                        <button onClick={() => this.onSelectType('NoteTodos')} className={`fas fa-list-ul clean-btn ${noteType === 'NoteTodos' ? 'active-type' : ''}`}></button> */}
+                        <button onClick={() => this.onSelectType('note-txt')} className={`fa fas fa-font ${noteType === 'note-txt' ? 'active-type' : ''} `}></button>
+                        <button onClick={() => this.onSelectType('note-img')} className={`fa fas fa-image ${noteType === 'note-img' ? 'active-type' : ''} `} ></button>
+                        <button onClick={() => this.onSelectType('note-video')} className={`fa fas fa-youtube ${noteType === 'note-video' ? 'active-type' : ''} `} ></button>
+                        <button onClick={() => this.onSelectType('note-todo')} className={`fa fas fa-list-ul ${noteType === 'note-todo' ? 'active-type' : ''} `} ></button>
+
                     </div>
                 </div>
             </section>
