@@ -46,3 +46,6 @@
 .txt-input {
     height: 100%;
 }
+.body-area{
+    resize: none;
+}

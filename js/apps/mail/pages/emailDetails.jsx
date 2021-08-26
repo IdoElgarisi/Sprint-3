@@ -7,10 +7,9 @@ export class EmailDetails extends React.Component {
     }
     loadMail = () => {
         const id = this.props.match.params.mailId
-        console.log(id);
         emailService.getMailById(id)
             .then(mail => {
-                if (!mail) this.props.history.push('/emailApp')
+                // if (!mail) this.props.history.push('/emailApp')
                 this.setState({ mail: mail })
             })
     }
@@ -25,21 +24,17 @@ export class EmailDetails extends React.Component {
         let date = `${mailSentTime.getDate()}.${mailSentTime.getMonth() + 1}.${mailSentTime.getFullYear() + 1}`
         let hours = mailSentTime.getHours() < 10 ? `0${mailSentTime.getHours()}` : mailSentTime.getHours();
         let minutes = mailSentTime.getMinutes() < 10 ? `0${mailSentTime.getMinutes()}` : mailSentTime.getMinutes();
-        console.log(mail);
         return <section className="flex">
-            <nav><EmailNav /></nav>
             <main className="mail-layout">
                 <section className="full-mail-display">
                     <header className="mail-header flex"><h4>{mail.subject}</h4> <i onClick={this.onBack} className="fa fa-times"></i></header>
                     <section className="mail-display-info-line flex space-between">
                         <div className="from-container">
-                            <p><span>From :</span>{mail.to}</p>
-
+                            { mail.status === 'sent' ? <p> <span>To :</span>{mail.to}</p>  : <p> <span>From :</span>{mail.from}</p>}
                         </div>
                         <div className="date-container flex space-between">
                             <p>{date}</p>
                             <p >{`${hours}:${minutes}`}</p>
-
                         </div>
                     </section>
                     <div className="msg-container">

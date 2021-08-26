@@ -46,14 +46,14 @@ function updateDoneTodo(note, newTodo) {
     // const todoIdx = todos.indexOf(todo)
     // todos[todoIdx].doneAt = !todos[todoIdx].doneAt ? new Date() : null
     note.info.todos = todos
-    console.log(note.info.todos);
+    // console.log(note.info.todos);
     _saveToStorage()
     return Promise.resolve(todos)
 }
 function createNotes() {
-    console.log('check');
+    // console.log('check');
     var notes = _loadFromStorage()
-    console.log(notes);
+    // console.log(notes);
     if (notes) return notes;
     notes = [
         {
