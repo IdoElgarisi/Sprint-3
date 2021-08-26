@@ -1,9 +1,5 @@
 
-<<<<<<< HEAD
 // import { storageService } from '../../../services/storageService.js'
-=======
-// import { storageervice } from '../../../services/storageService.js'
->>>>>>> c88b12a490a3a1d5209038ea4d83d0e92f81fd3d
 
 
 export const emailService = {
