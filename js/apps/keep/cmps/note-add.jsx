@@ -1,4 +1,5 @@
 // import { NotesList } from "../cmps/note-list.jsx";
+import { utilService } from "../../../services/util.service.js";
 import { keepService } from "../services/keepService.js";
 
 export class AddNote extends React.Component {
@@ -35,24 +36,38 @@ export class AddNote extends React.Component {
             newNote.info = { txt: txtInput }
             newNote.style = { backgroundColor: 'lightblue' }
             keepService.addNote(newNote)
-                .then(() => {
-                    loadNotes()
-
-                    // expected output: "Success!"
-                });
+                .then(() => loadNotes());
         }
         else if (noteType === 'note-img') {
             newNote.type = noteType
             newNote.isPinned = false
-            newNote.info = { txt: txtInput }
+            newNote.info = { title: 'image', url: txtInput }
             newNote.style = { backgroundColor: 'lightblue' }
             keepService.addNote(newNote)
-                .then(() => {
-                    loadNotes()
-
-                    // expected output: "Success!"
-                });
+                .then(() => loadNotes());
         }
+        else if (noteType === 'note-video') {
+            newNote.type = noteType
+            newNote.isPinned = false
+            const urlId = this.getYoutubeId(txtInput)
+            newNote.info = { title: 'video', youtubeId: urlId }
+            newNote.style = { backgroundColor: 'lightblue' }
+            keepService.addNote(newNote)
+                .then(() => loadNotes());
+        }
+        else if (noteType === 'note-todo') {
+            newNote.type = noteType
+            newNote.isPinned = false
+            const todos = txtInput.split(',')
+            const allTodos = todos.map((todo) => {
+                return { id: utilService.makeId(), isDone: false, txt: todo }
+            })
+            newNote.info = { title: 'todo', todos: allTodos }
+            newNote.style = { backgroundColor: 'lightblue' }
+            keepService.addNote(newNote)
+                .then(() => loadNotes());
+        }
+
         this.setState({ txtInput: '' })
     }
     getPlaceHolder = () => {
@@ -72,11 +87,20 @@ export class AddNote extends React.Component {
 
     }
 
+    getYoutubeId = (videoUrl) => {
+        // let videoUrl = url
+        let url = new URL(videoUrl);
+        let params = new URLSearchParams(url.search);
+        const videoId = params.get("v");
+        return videoId
+        console.log(videoId);
+        // let embedUrl = `https://www.youtube.com/embed/${videoId}`;
+        // return embedUrl
+    }
 
     render() {
         const { txtInput, noteType } = this.state
         const { loadNotes } = this.props
-        console.log(noteType);
         // if (!notes) return <div>loading..</div>
         return (
             <section>

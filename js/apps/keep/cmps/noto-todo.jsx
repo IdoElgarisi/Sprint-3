@@ -1,9 +1,17 @@
 import { keepService } from "../services/keepService.js"
+import { NoteSetup } from "./note-setup.jsx"
 
 export class NoteTodo extends React.Component {
 
     state = {
         todos: [],
+        isHover: false
+    }
+    onHover = (ev) => {
+        this.setState({ isHover: true })
+    }
+    onExitHover = (ev) => {
+        this.setState({ isHover: false })
     }
 
     componentDidMount() {
@@ -11,9 +19,11 @@ export class NoteTodo extends React.Component {
         this.setState({ todos })
     }
 
-    getCurrTime = (doneAt) => {
-        const date = new Date(doneAt).toLocaleString('en-US', { hour12: false })
-        return date.split(',')
+    onHover = (ev) => {
+        this.setState({ isHover: true })
+    }
+    onExitHover = (ev) => {
+        this.setState({ isHover: false })
     }
 
     toggleTodo = (todo) => {
@@ -30,10 +40,18 @@ export class NoteTodo extends React.Component {
 
     }
     render() {
-        const { todos, loadNotes } = this.state
+        const { todos, isHover } = this.state
+        const { note, loadNotes } = this.props
+        const { title } = this.props.note.info
+        const color = this.props.note.style.backgroundColor
+
         if (!todos) return <div>loding..</div>
+
         return (
-            <section className="todos-container">
+            <section className={`todos-container ${note.isPinned ? 'pinned' : ''} `}
+                onMouseEnter={this.onHover} onMouseLeave={this.onExitHover} style={{ backgroundColor: color }}>
+                {note.isPinned && <img src="../../../img/pinned.png" />}
+                <h1>{title}</h1>
                 <ul className="clean-list ">
                     {todos.map(todo => {
                         if (todo.isDone) {
@@ -54,6 +72,8 @@ export class NoteTodo extends React.Component {
                         }
                     })}
                 </ul>
+                {isHover && <NoteSetup note={note} onExitHover={this.onExitHover} loadNotes={loadNotes} />}
+
             </section>
         )
     }
