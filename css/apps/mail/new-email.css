@@ -1,4 +1,4 @@
-/* .new-mail-layout {
+.new-mail-layout {
     max-width: 380px;
 }
 
@@ -6,6 +6,7 @@
     width: 300px;
     margin: 0 auto;
     margin-block-start: 50px;
+    margin-inline-start: 50px;
     height: 200px;
     border: 1px solid gray;
 }
@@ -24,4 +25,24 @@
     font-weight: 400;
     margin: 0;
     width: 280px;
-} */
+}
+
+.new-mail-display>* {
+    margin: 0;
+}
+.new-mail-layout input{
+    height: 1rem;
+    width: 90%;
+    border: none;
+}
+.to-input .subject-input{
+    border-bottom: 1px solid gray;
+}
+
+.txt-input {
+    height: 60%;
+}
+
+.txt-input {
+    height: 100%;
+}

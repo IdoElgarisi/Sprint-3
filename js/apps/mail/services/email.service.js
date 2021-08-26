@@ -1,5 +1,5 @@
 
-// import { storageService } from '../../../services/storageService.js'
+// import { storageervice } from '../../../services/storageService.js'
 
 
 export const emailService = {
@@ -36,7 +36,8 @@ const gMails = [{
     body: 'Would love to catch up sometimes',
     isRead: false,
     sentAt: 1551133930594,
-    to: 'momo@momo.com'
+    to: 'momo@momo.com',
+    from:"Muki12@momo.com"
 },
 {
     id: 'e102',
@@ -92,9 +93,9 @@ function query(filterBy) {
 
     if (filterBy) {
         let { status, txt, isRead, isStared, labels } = filterBy
-        isRead = isRead ? isRead : null
-        isStared = isStared ? isStared : null
-        const mailsToShow = gMails.filter(mail => mail.subject.includes(txt) || mail.body.includes(txt) &&  mail.isRead === isRead )
+        // isRead = isRead==='true' ? true : null
+        // isStared = isStared ? isStared : null
+        const mailsToShow = gMails.filter(mail =>{mail.subject.includes(txt)} )
         return Promise.resolve(mailsToShow)
     }
     return Promise.resolve(gMails)

@@ -3,6 +3,7 @@ const { Route, Switch } = ReactRouterDOM
 import { KeepApp } from './js/apps/keep/pages/Keep.jsx'
 import { EmailApp } from './js/apps/mail//pages/emailApp.jsx'
 import { EmailDetails } from './js/apps/mail/pages/emailDetails.jsx'
+import { SendMail } from './js/apps/mail/pages/sendMail.jsx'
 import { AppHeader } from './js/cmps/AppHeader.jsx'
 import { Home } from './js/pages/Home.jsx';
 
@@ -16,6 +17,7 @@ export function App() {
       </header>
       <main>
         <Switch>
+          <Route path="/emailApp/newMail/" component={SendMail} />
           <Route path="/emailApp/:mailId" component={EmailDetails} />
           <Route path="/emailApp" component={EmailApp} />
           <Route path="/keepApp" component={KeepApp} />

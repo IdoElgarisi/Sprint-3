@@ -10,30 +10,37 @@ export class EmailFilter extends React.Component {
     };
 
     handleChange = (ev) => {
-        console.log(ev);
-        const field = ev.target.id;
-        let value;
-        if (ev.target.value === 'true') value = true
-        if (ev.target.value === 'false') value = false
-        else value = ev.target.value
-        console.log('field', field);
-        console.log('value', value);
+        const field = ev.target.name
+        let value = ev.target.value
         this.setState({ filterBy: { ...this.state.filterBy, [field]: value } }, () => {
-            this.props.onSetFilter(this.state.filterBy)
+            this.props.onSetFilter()
         });
     };
 
 
 
     render() {
+        const { status, txt, isRead, isStared, labels } = this.state.filterBy
         return (
-            <section className="mails-filter">
-                <label htmlFor="filterBy">Filter : </label>
-                <select name="filterList" onChange={this.handleChange} >
-                    <option name="filterList" id="isRead" value={true} >Read</option>
-                    <option name="filterList" id="isRead" value={false} >Unread</option>
-                </select>
-            </section>
+            // <section className="mails-filter">
+            //     <label htmlFor="filterBy">Filter : </label>
+            //     <select name="isRead" onChange={this.handleChange} >
+            //         <option value={true} >Read</option>
+            //         <option value={false} >Unread</option>
+            //     </select>
+            // </section>
+            <div className="title-filter">
+                <label htmlFor='by-title'>By Title</label>
+                <input
+                    name='txt'
+                    id='by-txt'
+                    type='text'
+                    placeholder='Text'
+                    value={txt}
+                    onChange={this.handleChange}
+                />
+            </div>
+
         )
     }
 }
