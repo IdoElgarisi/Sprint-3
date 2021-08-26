@@ -1,9 +1,11 @@
-const { NavLink, withRouter } = ReactRouterDOM
+const { Link, withRouter } = ReactRouterDOM
+
 class _EmailNav extends React.Component {
     render() {
         return (
             <section className="mail-nav">
-                <button className="new-mail-btn flex"><div className="add-img"></div> <p>New Mail</p></button>
+                {/* <button className="new-mail-btn flex"><div className="add-img"></div> <p>New Mail</p></button> */}
+                <Link to="/emailApp/newMail/" className="new-mail-btn flex"><div className="add-img"></div> <p>New Mail</p></Link>
                 <ul className="mail-nav-bar">
                     <li><i className="fa fa-inbox"></i><span>Inbox</span> </li>
                     <li><i className="fa fa-star"></i><span>Stared</span> </li>

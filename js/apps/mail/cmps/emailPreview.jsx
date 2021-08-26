@@ -1,4 +1,4 @@
-const { Link } = ReactRouterDOM
+const { NavLink } = ReactRouterDOM
 import { emailService } from '../services/email.service.js'
 export function EmailPreview({ mail, onDeleteMail }) {
     let dateToShow = `${new Date(mail.sentAt).getDate()}.${new Date(mail.sentAt).getMonth()}.${new Date(mail.sentAt).getFullYear()}`
@@ -21,7 +21,7 @@ export function EmailPreview({ mail, onDeleteMail }) {
                         <div className="mail-edit-btns">
                             <button onClick={() => { onDeleteMail(mail.id) }}><i className="fa fa-trash"></i></button>
                             <button  ><i className={`fa fa-envelope${mail.isRead ? '-open' : ''}`}></i></button>
-                            <Link to={`/emailApp/${mail.id}`} ><i className="fa fa-expand"></i></Link>
+                            <NavLink  to={`/emailApp/${mail.id}`} ><i className="fa fa-expand"></i></NavLink>
                         </div>
                         <p className="mail-address">{mail.to}</p>
                     </div>

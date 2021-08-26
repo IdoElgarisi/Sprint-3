@@ -28,6 +28,9 @@
     border-radius: 29px;
     border: none;
     align-items: center;
+    text-decoration: none;
+    color: #222;
+    background-color: honeydew;
 }
 
 .new-mail-btn:hover {

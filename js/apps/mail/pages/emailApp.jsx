@@ -21,14 +21,14 @@ export class EmailApp extends React.Component {
         });
     };
     onSetFilter = (filterBy) => {
-console.log(filterBy);
+    console.log(filterBy);
         this.setState({ filterBy }, this.loadEmails);
+        console.log(this.state);
     };
     onSetSort = (sortBy) => {
         console.log(sortBy);
         emailService.sortMails(sortBy)
             .then(this.loadEmails)
-
 
     }
     onDeleteMail = (id) => {
