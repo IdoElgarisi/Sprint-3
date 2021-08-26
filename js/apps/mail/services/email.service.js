@@ -1,12 +1,12 @@
 
-// import { storageService } from '../../../services/storageService.js'
-
+import { storageService } from '../../../services/storageService.js'
 
 export const emailService = {
     query,
     deleteMail,
     getMailById,
-    sortMails
+    sortMails,
+    addMail
 }
 
 const email = {
@@ -22,83 +22,88 @@ const loggedinUser = {
     email: 'user@appsus.com',
     fullname: 'Mahatma Appsus'
 }
-// const criteria = {
-//     status: 'inbox/sent/trash/draft',
-//     txt: 'puki', // no need to support complex text search
-//     isRead: true, // (optional property, if missing: show all)
-//     isStared: true, // (optional property, if missing: show all)
-//     lables: ['important', 'romantic'] // has any of the labels
-// }
 
-const gMails = [{
-    id: 'e101',
-    subject: 'Miss you!',
-    body: 'Would love to catch up sometimes',
-    isRead: false,
-    sentAt: 1551133930594,
-    to: 'momo@momo.com',
-    from:"Muki12@momo.com"
-},
-{
-    id: 'e102',
-    subject: 'Hey Puki!',
-    body: 'Would love to catch up sometimes',
-    isRead: true,
-    sentAt: 1629889102697,
-    to: 'puki@momo.com'
-},
-{
-    id: 'e103',
-    subject: 'Hey Shuki!',
-    body: 'Come play for us!',
-    isRead: true,
-    sentAt: 1429889100697,
-    to: 'Hapoel-JLM@momo.com'
-},
-{
-    id: 'e104',
-    subject: 'Hey Puki!',
-    body: 'Would love to catch up sometimes',
-    isRead: false,
-    sentAt: 1629887102697,
-    to: 'puki@momo.com'
-},
-{
-    id: 'e105',
-    subject: 'Hey Puki!',
-    body: 'Would love to catch up sometimes',
-    isRead: true,
-    sentAt: 1629889102697,
-    to: 'puki@momo.com'
-},
-{
-    id: 'e106',
-    subject: 'Hey Puki!',
-    body: 'Would love to catch up sometimes',
-    isRead: false,
-    sentAt: 1629489102697,
-    to: 'puki@momo.com'
-},
-{
-    id: 'e107',
-    subject: 'Hey Puki!',
-    body: 'Would love to catch up sometimes',
-    isRead: false,
-    sentAt: 1629884000697,
-    to: 'puki@momo.com'
-}
+const gMails = storageService.loadFromStorage('emailsDB') || [
+    {
+        id: 'e100',
+        subject: 'Miss you!',
+        body: 'Would love to catch up sometimes',
+        isRead: true,
+        isStared: false,
+        sentAt: 1651133930594,
+        to: 'muki@muki.com',
+        from: 'momo@momo.com',
+        status: 'inbox',
+        labels: []
+    },
+    {
+        id: 'e101',
+        subject: 'Miss you!',
+        body: 'Would love to catch up sometimes',
+        isRead: false,
+        isStared: false,
+        sentAt: 1621133930594,
+        to: 'muki@muki.com',
+        from: 'momo@momo.com',
+        status: 'inbox',
+        labels: []
+    },
+    {
+        id: 'e102',
+        subject: 'Miss you!',
+        body: 'Would love to catch up sometimes',
+        isRead: true,
+        isStared: false,
+        sentAt: 1551132030594,
+        to: 'muki@muki.com',
+        from: 'momo@momo.com',
+        status: 'inbox',
+        labels: []
+    },
+    {
+        id: 'e103',
+        subject: 'Miss you!',
+        body: 'Would love to catch up sometimes',
+        isRead: false,
+        isStared: false,
+        sentAt: 1551131930594,
+        to: 'muki@muki.com',
+        from: 'momo@momo.com',
+        status: 'trash',
+        labels: []
+    },
+    {
+        id: 'e104',
+        subject: 'Miss you!',
+        body: 'Would love to catch up sometimes',
+        isRead: false,
+        isStared: false,
+        sentAt: 1551033930594,
+        to: 'muki@muki.com',
+        from: 'momo@momo.com',
+        status: 'trash',
+        labels: []
+    }
 ]
 
-function query(filterBy) {
+const criteria = {
+    status: ['inbox', 'sent', 'trash', 'drafts'],
+    txt: '',
+    isRead: true, // (optional property, if missing: show all)
+    isStared: true, // (optional property, if missing: show all)
+    lables: ['important', 'romantic']
+}
 
+function query(filterBy) {
+    const { status, txt, isStared, labels } = criteria
     if (filterBy) {
-        let { status, txt, isRead, isStared, labels } = filterBy
-        // isRead = isRead==='true' ? true : null
-        // isStared = isStared ? isStared : null
-        const mailsToShow = gMails.filter(mail =>{mail.subject.includes(txt)} )
+        let mailsToShow;
+        (status.includes(filterBy)) ? mailsToShow = gMails.filter(mail => mail.status === filterBy) : mailsToShow = gMails;
+        if (filterBy === 'read') mailsToShow.filter(mail => mail.isRead === true)
+        if (filterBy === 'unread') mailsToShow.filter(mail => mail.isRead === false)
         return Promise.resolve(mailsToShow)
     }
-    return Promise.resolve(gMails)
+    return Promise.resolve(gMails.filter(mail => mail.status === 'inbox'))
 }
 
 function getMailById(mailId) {
@@ -107,18 +112,26 @@ function getMailById(mailId) {
     })
     return Promise.resolve(mail)
 }
+
 function sortMails(sortBy) {
     if (sortBy === 'oldest') gMails.sort(function (a, b) { return a.sentAt - b.sentAt })
     if (sortBy === 'newest') gMails.sort(function (a, b) { return b.sentAt - a.sentAt })
+    // if(sortBy==='title')
     return Promise.resolve(gMails)
 }
-
+function addMail(mail) {
+    gMails.push(mail)
+    _saveMailsToStorage()
+    console.log(gMails);
+    return Promise.resolve(gMails)
+}
 function deleteMail(mailId) {
     let mailIdx = gMails.findIndex(function (mail) {
         return mailId === mail.id
     })
-    gMails.splice(mailIdx, 1)
-    // _saveMailsToStorage();
+    gMails[mailIdx].status === 'trash' ? gMails.splice(mailIdx, 1) : gMails[mailIdx].status = 'trash'
+
+    _saveMailsToStorage()
     return Promise.resolve()
 }
 
