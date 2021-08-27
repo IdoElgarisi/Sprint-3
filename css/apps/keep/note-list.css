@@ -12,6 +12,7 @@
 
 .notes-list img {
     height: 100px;
+    border-radius: 0.3em;
 }
 
 .clean-list {
@@ -46,7 +47,10 @@
     text-decoration: line-through;
 }
 
-.note-text, .img-container, .todos-container, .video-note {
+.note-list .img-container {
+    transition: background-color 1s cubic-bezier(0.4, 0, 1, 1);
+}
+.note-text, .img-container, .todos-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -54,6 +58,11 @@
     border-radius: 10px;
 }
 
+.img-container {
+    transition: background-color 1s cubic-bezier(0.4, 0, 1, 1);
+
+
+}
 .note-text>*, .img-container>* {
     margin: 10px;
     padding: 0;
@@ -71,9 +80,8 @@
     margin: 0;
 }
 
-.todos-container.pinned img{
+.todos-container.pinned img {
     height: 20px;
     align-self: flex-end;
     margin: 0;
 }
-

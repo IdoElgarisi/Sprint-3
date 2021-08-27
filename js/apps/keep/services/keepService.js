@@ -13,7 +13,8 @@ export const keepService = {
     addNote,
     updateDoneTodo,
     updateNoteColor,
-    setPinnedNote
+    setPinnedNote,
+    copyNote
 }
 
 function query(filterBy) {
@@ -22,6 +23,20 @@ function query(filterBy) {
 }
 
 function updateNote(note) {
+    const noteIdx = getNoteId(note)
+    notes[noteIdx] = note
+    _saveToStorage()
+    return Promise.resolve()
+}
+
+function copyNote(note) {
+    const noteIdx = getNoteId(note)
+    const newNote = { ...note }
+    newNote.id = utilService.makeId()
+    notes.splice(noteIdx, 0, newNote)
+    console.log(noteIdx);
+    _saveToStorage()
+    return Promise.resolve()
 }
 
 function removeNote(note) {

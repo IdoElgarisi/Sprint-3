@@ -1,5 +1,10 @@
 .note-setup {
-    flex-direction: column;
+    /* flex-direction: column; */
+    display: block
+}
+.setup-buttons{
+    display: flex;
+    justify-content: space-around;
 }
 .setup-buttons>* {
     color: rgb(62, 62, 65);

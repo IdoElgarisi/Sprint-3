@@ -12,3 +12,7 @@
     align-self: flex-end;
     margin: 0;
 }
+
+.image-container.pinned [name="txtInput"] {
+    height: 1em;
+}

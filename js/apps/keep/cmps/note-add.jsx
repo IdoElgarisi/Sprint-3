@@ -21,7 +21,6 @@ export class AddNote extends React.Component {
     }
 
     onSelectType = (noteType) => {
-        // console.log(noteType);
         this.setState({ noteType })
     }
 

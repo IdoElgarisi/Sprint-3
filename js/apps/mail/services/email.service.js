@@ -1,5 +1,5 @@
 
-import { storageService } from '../../../services/storageService.js'
+// import { storageService } from '../../../services/storageService.js'
 
 export const emailService = {
     query,
@@ -23,7 +23,8 @@ const loggedinUser = {
     fullname: 'Mahatma Appsus'
 }
 
-const gMails = storageService.loadFromStorage('emailsDB') || [
+//storageService.loadFromStorage('emailsDB') ||
+const gMails =  [
     {
         id: 'e100',
         subject: 'Miss you!',
@@ -136,5 +137,5 @@ function deleteMail(mailId) {
 }
 
 function _saveMailsToStorage() {
-    storageService.saveToStorage('emailsDB', gMails)
+    // storageService.saveToStorage('emailsDB', gMails)
 }
