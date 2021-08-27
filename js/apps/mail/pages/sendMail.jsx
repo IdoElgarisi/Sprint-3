@@ -31,7 +31,6 @@ export class SendEmail extends React.Component {
     }
 
 
-
     handleChange = ({ target }) => {
         const field = target.name
         const value = target.value
@@ -53,7 +52,7 @@ export class SendEmail extends React.Component {
                 })
         }, 100);
     }
-  
+
     render() {
         return <section className=" new-mail flex">
             <main className="new-mail-layout">
@@ -61,15 +60,12 @@ export class SendEmail extends React.Component {
                     <header className="mail-header flex"><h4>New Message</h4> <i onClick={this.onBack} className="fa fa-times"></i></header>
                     <form action="sendMail">
                         <div className="input-group">
-                            <span><i className="fa fa-user"></i></span>
-                            <input type="text" ref={this.inputRef} name="to" placeholder="To..." onChange={this.handleChange} />
+                            <input type="text" ref={this.inputRef} autoComplete="off" name="to" placeholder="To..." onChange={this.handleChange} />
                         </div>
                         <div className="input-group">
-                            <span><i className="fa fa-pencil"></i></span>
-                            <input type="text" name="subject" placeholder="Subject..." onChange={this.handleChange} />
+                            <input type="text" name="subject" autoComplete="off" placeholder="Subject..." onChange={this.handleChange} />
                         </div>
                         <div className="input-group">
-                            <span><i className="fa fa-palette"></i></span>
                             <textarea name="body" className="body-area" rows="6" placeholder="Body..." onChange={this.handleChange}></textarea>
                         </div>
                         <button onClick={this.formSubmited}>Send </button>

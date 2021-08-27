@@ -1,15 +1,25 @@
 .new-mail-layout {
     max-width: 380px;
+    height: 500px;
+    bottom: 0;
+}
+.new-mail-display input{
+    padding-inline-start: 5px;
+}
+.new-mail-display textarea{
+    padding-inline-start: 5px;
+}
+.new-mail-display {
+    width: 95%;
+    margin: 0 auto;
+    position: absolute;
+    background-color: aliceblue;
+    height: 400px;
+    top: 50vh;
+    border: 1px solid gray;
+    z-index: 5;
 }
 
-.new-mail-display {
-    width: 300px;
-    margin: 0 auto;
-    margin-block-start: 50px;
-    margin-inline-start: 50px;
-    height: 200px;
-    border: 1px solid gray;
-}
 
 .mail-header {
     display: flex;
@@ -25,15 +35,19 @@
     font-weight: 400;
     margin: 0;
     width: 280px;
+    font-size: 1.5rem;
 }
 
 .new-mail-display>* {
     margin: 0;
 }
 .new-mail-layout input{
-    height: 1rem;
+    height: 1.5rem;
+    font-size: 1.5rem;
     width: 90%;
     border: none;
+    outline: none;
+margin: 5px 0;
 }
 .to-input .subject-input{
     border-bottom: 1px solid gray;
@@ -47,5 +61,25 @@
     height: 100%;
 }
 .body-area{
+    font-size: 1rem;
     resize: none;
+    border: none;
+    outline: none;
+    min-height: 200px;
+    max-height: 300px;
+}
+@media (max-width:450px) {
+    
+}
+
+@media (min-width:450px) {
+    .new-mail-display {
+        width: 300px;
+        margin: 0 auto;
+        margin-block-start: 50px;
+        margin-inline-start: 50px;
+        height: 200px;
+        border: 1px solid gray;
+    }
+
 }

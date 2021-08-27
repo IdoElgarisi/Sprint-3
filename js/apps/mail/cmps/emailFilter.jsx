@@ -31,8 +31,9 @@ export class EmailFilter extends React.Component {
             <section className="mails-filter">
                 <form className='emails-filter' onSubmit={this.onFilter}>
                     <div className="txt-filter">
-                        <label htmlFor='by-txt'>By subject</label>
+                        <label htmlFor='by-txt'></label>
                         <input
+                        className="search-box"
                             name='txt'
                             id='by-txt'
                             type='text'
@@ -42,7 +43,7 @@ export class EmailFilter extends React.Component {
                         />
                     </div>
                     <div className="read-filter">
-                        <label htmlFor="filterBy">Filter : </label>
+                        <label className="filter-by" htmlFor="filterBy">Filter : </label>
                         <select name="isRead" onChange={this.onReadFilter} >
                             <option name="isRead" value='read' >Read</option>
                             <option name="isRead" value='unread' >Unread</option>

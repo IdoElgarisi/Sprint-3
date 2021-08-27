@@ -13,8 +13,8 @@ export class EmailSort extends React.Component {
 
     render() {
         return (
-            <section className="mails-filter">
-                <label htmlFor="sortBy">Sort: </label>
+            <section className="mails-sort">
+                <label className="sort-by" htmlFor="sortBy">Sort: </label>
                 <select name="sortBy" onChange={this.handleChange} >
                     <option value="newest" >Newest</option>
                     <option value="oldest">Oldest</option>

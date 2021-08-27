@@ -1,0 +1,56 @@
+.mails-list-header {
+    gap: 15px;
+    align-items: center;
+    flex-direction: row;
+}
+
+.sort-by {
+    display: none;
+}
+
+.filter-by {
+    display: none;
+}
+
+.emails-filter {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.search-box {
+    width: 300px;
+}
+
+.email-header {
+    max-width: 400px;
+}
+
+@media (max-width:450px) {
+    .mails-list-header {
+        gap: 15px;
+    }
+    .mails-list-header h1 {
+        display: none;
+    }
+}
+
+@media (min-width:450px) {
+    .btn-menu {
+        display: none;
+    }
+    .mails-list-header {
+        gap: 30px;
+        align-items: center;
+    }
+    .emails-filter {
+        flex-direction: column;
+        /* justify-content: space-between; */
+    }
+    .filter-sort-container {
+        display: flex;
+        flex-direction: row;
+    }
+    .mails-list-header h1 {
+        width: 100px;
+    }
+}

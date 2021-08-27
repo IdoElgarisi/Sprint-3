@@ -12,7 +12,8 @@ export class EmailApp extends React.Component {
     state = {
         mails: [],
         filterBy: null,
-        selectedEmail: null
+        selectedEmail: null,
+        active: false
     };
 
     componentDidMount() {
@@ -33,7 +34,7 @@ export class EmailApp extends React.Component {
         emailService.sortMails(sortBy)
             .then(this.loadEmails)
     }
-  
+
     onDeleteMail = (id) => {
         emailService.deleteMail(id)
             .then(this.loadEmails())
@@ -52,22 +53,33 @@ export class EmailApp extends React.Component {
                 mail.isRead = !mode
                 console.log(this);
             })
-       
+
     }
+    toggleClass() {
+        const currentState = this.state.active;
+        this.setState({ active: !currentState });
+    };
+
     render() {
-        const { mails, selectedEmail } = this.state;
+        const { mails, selectedEmail, active } = this.state;
         return (
             <section className="mails-layout">
 
-                <header className="mails-list-header flex">
-                    <h1> <i className="fa fa-envelope"></i> Ail App</h1>
-                    <EmailSort onSetSort={this.onSetSort} />
-                    <EmailFilter onSetFilter={this.onSetFilter} />
+                <header className=" email-header flex" >
+                    <section className="mails-list-header flex">
+                        <button onClick={() => this.toggleClass()} className={`btn-menu ${active ? 'active' : ' '}`}><i className="fa fa-bars"></i></button>
+                        <h1> <i className="fa fa-envelope"></i> Ail App</h1>
+                        <div className="filter-sort-container">
+                            <EmailFilter onSetFilter={this.onSetFilter} />
+                            <EmailSort onSetSort={this.onSetSort} />
+                        </div>
+                    </section>
                 </header>
+                {active &&
+                <nav className="main-nav-side "><EmailNav onNewEmail={this.onNewEmail} loadEmails={this.loadEmails} onSetFilter={this.onSetFilter} /></nav>
+                }
                 <section className="flex">
-                    <nav><EmailNav onNewEmail={this.onNewEmail} loadEmails={this.loadEmails} onSetFilter={this.onSetFilter} /></nav>
-                    <main>
-                        {/* <NavLink to="/about/vision">Inbox</NavLink> */}
+                    <main className="mails-main-layout">
                         <EmailList mails={mails} onReadBtn={this.onReadBtn} onDeleteMail={this.onDeleteMail} />
                         <Route path="/emailApp/newMail" loadEmails={this.loadEmails} component={SendEmail} />
                         <Route path="/emailApp/:mailId" component={EmailDetails} />
