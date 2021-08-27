@@ -81,9 +81,9 @@ const gMails = storageService.loadFromStorage('emailsDB') || [
         sentAt: 1551033930594,
         to: 'muki@muki.com',
         from: 'momo@momo.com',
-        status: 'trash',
+        status: 'inbox',
         labels: []
-    }
+    },
 ]
 
 const criteria = {

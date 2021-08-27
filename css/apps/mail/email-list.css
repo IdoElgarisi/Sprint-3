@@ -1,8 +1,25 @@
 .email-list {
-    width: 400px;
-    border: 1px solid gray;
+    min-width:380px ;
     margin: 0 auto;
-    background-color: #e6eff6;
-    margin-inline-start: 50px;
+    background-color: #f6f9fc;
+    margin-inline-start: 5px;
 }
 
+@media (max-width:450px) {
+    .email-list {
+        width: 95%;
+        max-width: 430px;
+        margin: 0 auto;
+        margin-inline-start: 5px;
+    }
+}
+
+@media (min-width:450px) {
+    .email-list {
+        width: 480px;
+        border: 1px solid gray;
+        margin: 0 auto;
+        background-color: #e6eff6;
+        margin-inline-start: 50px;
+    }
+}
