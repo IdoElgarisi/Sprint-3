@@ -23,7 +23,8 @@ a {
     /* margin-inline-start: 50px; */
     margin: 0 auto;
     margin-block-start: 30px;
-    min-height: 60vh;
+    max-height: 60vh;
+    overflow-y: scroll;
     width: 80%;
 }
 
