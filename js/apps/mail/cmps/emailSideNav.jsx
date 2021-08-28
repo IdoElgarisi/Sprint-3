@@ -15,7 +15,6 @@ class _EmailNav extends React.Component {
         this.setState({ active: !currentState });
     };
     onNavClicked(val) {
-        console.log('nac-click', val);
         const { onSetFilter } = this.props
         onSetFilter(val)
         this.toggleClass()

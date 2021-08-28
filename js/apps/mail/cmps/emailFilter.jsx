@@ -45,12 +45,12 @@ export class EmailFilter extends React.Component {
                     </div>
                     <div className="read-filter">
                         <label className="filter-by" htmlFor="filterBy">Filter : </label>
-                        <select name="isRead" onChange={this.handleChange} >
+                        <select  className="is-read" name="isRead" onChange={this.handleChange} >
                             <option name="isRead" value='read' >Unread</option>
                             <option name="isRead" value='unread' >Read</option>
                         </select>
                     </div>
-                    <button className="filter-btn">Filter</button>
+                    <button className="filter-btn clear-btn">Filter</button>
                 </form>
             </section>
         )
