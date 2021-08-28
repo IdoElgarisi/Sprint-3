@@ -1,14 +1,17 @@
 .home-image {
-    background-image: url('../../img/home-img.jpg');
-    height: 50vh;
+    background-image: url('../../img/home-back.jpeg');
+    height: 70vh;
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
 }
 
 .home-image h1 {
-    font-family: lato regular;
-    font-size: 50px;
+    text-align: center;
+    font-family: lato-regular;
+    font-size: 4em;
+    color: #f3ecec;
+    font-family: cavet-bold;
 }
 
 .home-details {
@@ -16,7 +19,8 @@
     display: flex;
     justify-content: space-around;
 }
-.home-details a{
+
+.home-details a {
     color: rgb(94 91 91);
 }
 
@@ -29,7 +33,8 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     transition: transform 0.7s;
 }
-.icon-card:hover{
+
+.icon-card:hover {
     transform: scale(1.1);
     cursor: pointer;
 }
@@ -54,9 +59,14 @@
     .home-details {
         flex-direction: column;
     }
-    .cards-container{
+    .cards-container {
         flex-direction: column;
-
+    }
+    .home-image {
+        height: 50vh;
+    }
+    .home-image h1 {
+        font-size: 3em;
     }
 }
 

@@ -14,7 +14,7 @@
 .person-card {
     border-radius: 0.5em;
     padding: 10px;
-    font-family: lato regular;
+    font-family: lato-regular;
     align-items: center;
     flex-direction: column;
     justify-content: center;

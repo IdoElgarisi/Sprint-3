@@ -10,10 +10,7 @@
 @import url('./cmps/search-list.css');
 @import url('./pages/book-details.css');
 
-@font-face {
-    font-family: cookie regular;
-    src: url('../fonts/Cookie-Regular.ttf');
-}
+ 
 
 /*  */
 

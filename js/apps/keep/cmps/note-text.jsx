@@ -23,11 +23,13 @@ export class NoteText extends React.Component {
         return (
 
             <section className={`note-text flex ${note.isPinned ? 'pinned' : ''} `}
-             onMouseEnter={this.onHover} onMouseLeave={this.onExitHover} style={{ backgroundColor: color }}>
-                {note.isPinned&&<img src="../../../img/pinned.png"/>}
+                onMouseEnter={this.onHover} onMouseLeave={this.onExitHover} style={{ backgroundColor: color }}>
+                {note.isPinned && <img src="../../../img/pinned.png" />}
                 <h1>{title} </h1>
                 <h3>{txt} </h3>
-                {isHover && <NoteSetup note={note} onExitHover={this.onExitHover} loadNotes={loadNotes} />}
+                <div className="note-hover" style={{ opacity: isHover ? '1' : '0' }}>
+                    {<NoteSetup note={note} onExitHover={this.onExitHover} loadNotes={loadNotes} />}
+                </div>
             </section>
         )
 

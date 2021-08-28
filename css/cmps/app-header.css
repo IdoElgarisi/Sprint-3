@@ -2,12 +2,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(255, 255, 97);
+    background-color: #f0f0f0;
 }
 
 .logo a {
     text-decoration: none;
-    color: #222;
+    color: #626262;
     font-size: 2em;
 }
 
@@ -26,6 +26,7 @@
 }
 .collection-btn img{
     height: 48px;
+    opacity: 0.75;
 }
 button.collection-btn {
     transition: transform 0.4s ease-in-out;

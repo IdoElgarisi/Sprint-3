@@ -22,7 +22,7 @@ function query(filterBy) {
     if (filterBy) {
         let { noteType, txt } = filterBy
         if (!noteType || noteType == 'all') {
-            const noteToShow = notes.filter(currNote => currNote.info.title.includes(txt.toLowerCase()))
+            const noteToShow = notes.filter(currNote => currNote.info.title.toLowerCase().includes(txt.toLowerCase()))
             return Promise.resolve(noteToShow)
         }
         const noteToShow = notes.filter(currNote => {
@@ -102,7 +102,7 @@ function updateDoneTodo(note, newTodo) {
     const { todos } = note.info
     var todoIdx = todos.findIndex(todo => todo.id === newTodo.id)
     todos[todoIdx].isDone = !todos[todoIdx].isDone
-    doneAt = !todos[todoIdx].doneAt ? new Date() : null
+    // doneAt = !todos[todoIdx].doneAt ? new Date() : null
     note.info.todos = todos
     _saveToStorage()
     return Promise.resolve(todos)

@@ -49,7 +49,7 @@ export class NoteTodo extends React.Component {
 
         return (
             <section className={`todos-container ${note.isPinned ? 'pinned' : ''} `}
-                onMouseEnter={this.onHover} onMouseLeave={this.onExitHover} style={{ backgroundColor: color }}>
+                style={{ backgroundColor: color }}>
                 {note.isPinned && <img src="../../../img/pinned.png" />}
                 <h1>{title}</h1>
                 <ul className="clean-list ">
@@ -72,7 +72,9 @@ export class NoteTodo extends React.Component {
                         }
                     })}
                 </ul>
-                {isHover && <NoteSetup note={note} onExitHover={this.onExitHover} loadNotes={loadNotes} />}
+                <div className="note-hover" style={{ opacity: isHover ? '1' : '0' }} onMouseEnter={this.onHover} onMouseLeave={this.onExitHover} >
+                    {<NoteSetup note={note} onExitHover={this.onExitHover} loadNotes={loadNotes} />}
+                </div>
 
             </section>
         )

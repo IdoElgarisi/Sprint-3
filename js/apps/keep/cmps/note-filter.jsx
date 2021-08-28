@@ -5,6 +5,9 @@ export class NoteFilter extends React.Component {
             txt: ''
         },
     };
+    
+    waitUntil() {}
+
     handleChange = (ev) => {
         const { name, value } = ev.target
         this.setState({ filterBy: { ...this.state.filterBy, [name]: value } }, () => {
@@ -12,7 +15,6 @@ export class NoteFilter extends React.Component {
         });
     };
 
-    waitUntil() { }
 
 
     render() {

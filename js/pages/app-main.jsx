@@ -5,7 +5,7 @@ export function Main() {
     return (
         <main className="home-main flex">
             <section className="home-image">
-                <h1>Welcome To Asus!</h1>
+                <h1>Welcome To Appsus</h1>
             </section>
             <section className="home-details flex">
                 <NavLink to="/emailApp">

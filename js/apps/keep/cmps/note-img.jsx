@@ -33,7 +33,9 @@ export class NoteImg extends React.Component {
                     className="note-img"
                     src={url}
                 />
-                {isHover && <NoteSetup note={note} onExitHover={this.onExitHover} loadNotes={loadNotes} />}
+                <div className="note-hover" style={{ opacity: isHover ? '1' : '0' }}>
+                    {<NoteSetup note={note} onExitHover={this.onExitHover} loadNotes={loadNotes} />}
+                </div>
             </section>
         )
     }

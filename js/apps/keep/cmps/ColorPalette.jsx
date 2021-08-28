@@ -4,7 +4,7 @@
 export function ColorPalette({ onSetColor }) {
     return (
         <div className="color-palette">
-            <button style={{color:'#adb5bd'}} className=" fa fas fa-circle clear-btn" onClick={() => onSetColor('#adb5bd')}></button>
+            {/* <button style={{color:'#adb5bd'}} className=" fa fas fa-circle clear-btn" onClick={() => onSetColor('#adb5bd')}></button> */}
             <button style={{color:'#B0E0E6'}} className=" fa fas fa-circle clear-btn" onClick={() => onSetColor('#B0E0E6')}></button>
             <button style={{color:'#c3e7e8'}} className=" fa fas fa-circle clear-btn" onClick={() => onSetColor('#c3e7e8')}></button>
             <button style={{color:'#aec9eb'}} className=" fa fas fa-circle clear-btn" onClick={() => onSetColor('#aec9eb')}></button>

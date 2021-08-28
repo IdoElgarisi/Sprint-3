@@ -22,9 +22,10 @@ export class KeepApp extends React.Component {
         this.loadNotes();
     }
 
-    waitUntil() { }
+    waitUntil() { 
+        
+    }
     loadNotes = () => {
-
         keepService.query(this.state.filterBy)
             .then((notes) => {
                 this.setState({ notes });

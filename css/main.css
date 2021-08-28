@@ -1,6 +1,7 @@
 @import url('./parts/fonts.css');
 @import url('./parts/base.css');
 @import url('./parts/helpers.css');
+@import url('../css/apps/books/main.css');
 @import url('./cmps/app-header.css');
 @import url('./cmps/app-home.css');
 @import url('./cmps/app-main.css');
