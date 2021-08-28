@@ -1,6 +1,6 @@
 .email-list {
-    width: 80%;
     min-width: 380px;
+    width: 100%;
     margin: 0 auto;
     background-color: #f6f9fc;
     /* margin-inline-start: 5px; */
@@ -21,7 +21,7 @@
 
     .email-list {
         max-width: 650px;
-        width: 80%;
+        width: 100%;
         justify-self: center;
         border: 1px solid gray;
         margin: 0 auto;

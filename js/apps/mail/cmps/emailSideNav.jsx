@@ -40,7 +40,7 @@ class _EmailNav extends React.Component {
                     <li className="flex" onClick={() => this.onNavClicked('drafts')}><i className="fa fa-sticky-note"></i> <span>Drafts</span></li>
                     <li className="flex" onClick={() => this.onNavClicked('trash')}><i className="fa fa-trash"></i> <span>Rcycle Bin</span></li>
                     {/* <li className="read-count-container"><div className="read-count" ><p width={`${this.getReadCount()}%`}>{this.getReadCount()} %</p></div> </li> */}
-                    <li className="read-count-container"><div className="read-count" ><p style={{ width: `${this.getReadCount()}%` }}>{this.getReadCount()} %</p></div> </li>
+                    <li className="read-count-container"><div className="read-count" style={{ width: `${this.getReadCount()}%` }}><p >{this.getReadCount()}%</p></div> </li>
                 </ul>
 
             </section >

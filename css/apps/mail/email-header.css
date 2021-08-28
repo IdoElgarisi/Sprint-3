@@ -18,7 +18,7 @@
 }
 
 .search-box {
-    width: 260px;
+   min-width: 260px;
 }
 
 .email-header {
@@ -65,6 +65,9 @@
     }
     .filter-btn {
         display: none;
+    }
+    .search-box {
+        max-width: 430px;
     }
 }
 

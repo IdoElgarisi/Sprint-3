@@ -67,30 +67,27 @@ li span {
 .read-count-container {
     width: 100%;
     /* background-color: 50%; */
+
 }
 
 .read-count {
-    margin: 0 auto;
     width: 90%;
     background-color: white;
     border-radius: 29px;
-    /* background: linear-gradient(to right, rgb(177, 208, 236) 0%, rgb(34, 117, 195) 100%); */
 }
 
 .read-count p {
     background-color: rgb(123, 185, 255);
-    /* background: rgb(34, 109, 195); */
-    /* background: linear-gradient(to right, rgb(34, 117, 195) 0%, rgba(82, 45, 253, 0.07373371711966037) 100%); */
     border: 1px solid gray;
     border-radius: 29px;
     font-size: 1.3rem;
+    min-width: 70px;
 }
 
 .mail-nav-bar {
     position: fixed;
     top: 90px;
-    left: 0;
-    /* background-color: gray; */
+    left: 8px;
     padding: 0;
     width: 200px;
     height: 100vh;
@@ -98,7 +95,7 @@ li span {
     flex-direction: column;
     transform: translateX(-100%);
     transition: 1s;
-    background-color: rgba(170, 170, 170, 0.562);
+    background-color: #cecece;
 }
 
 .btn-menu.active~.mail-nav-bar {
@@ -106,10 +103,6 @@ li span {
     opacity: 2;
 }
 
-.btn-menu.active+.screen {
-    opacity: 1;
-    pointer-events: auto;
-}
 
 .new-mail-btn p {
     display: none;
@@ -139,6 +132,16 @@ li span {
         top: 85vh;
         left: 75vw;
     }
+    .btn-menu.active+.screen {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .btn-menu.active+.screen {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    
+    
 }
 
 @media (min-width:450px) {
@@ -148,6 +151,11 @@ li span {
         top: 85vh;
         left: 75vw;
     }
+    .btn-menu.active+.screen {
+        opacity: 1;
+        pointer-events: auto;
+    }
+   
 }
 
 @media (min-width:700px) {
@@ -200,6 +208,12 @@ li span {
         margin: 0;
         margin-inline-start: 15px;
     }
+    .btn-menu.active+.screen {
+        display: none;
+        opacity:0;
+        pointer-events: none;
+    }
+   
 }
 
 @media (min-width:900px) {
@@ -214,5 +228,10 @@ li span {
     }
     .mail-nav {
         border-right: 1px solid rgba(172, 172, 172, 0.363);
+    }
+    .btn-menu.active+.screen {
+        display: none;
+        opacity:0;
+        pointer-events: none;
     }
 }

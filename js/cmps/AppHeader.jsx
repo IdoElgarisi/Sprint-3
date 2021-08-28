@@ -18,7 +18,7 @@ class _AppHeader extends React.Component {
                 <button onClick={this.toggleNav} className="clear-btn collection-btn">  <img src='img\collection.png' /> </button>
                 <ul className={`main-nav-bar ${isNavOpen ? 'open-nav' : 'close-nav'}`}>
                     <li  > <NavLink exact to="/"><img onClick={() => this.setState({ isNavOpen: false })} src='img\home-logo.png' /></NavLink></li>
-                    <li ><NavLink to="/book"><img onClick={() => this.setState({ isNavOpen: false })} src='img\books-logo.png' /></NavLink></li>
+                    <li ><NavLink to="/bookApp"><img onClick={() => this.setState({ isNavOpen: false })} src='img\books-logo.png' /></NavLink></li>
                     <li ><NavLink to="/keepApp"><img onClick={() => this.setState({ isNavOpen: false })} src='img\keep-logo.png' /></NavLink></li>
                     <li ><NavLink to="/emailApp"><img onClick={() => this.setState({ isNavOpen: false })} src='img\mail-logo.png' /></NavLink></li>
                     {/* <li onClick={() => this.setState({ isNavOpen: false })} ><NavLink to="/about">About</NavLink></li> */}
