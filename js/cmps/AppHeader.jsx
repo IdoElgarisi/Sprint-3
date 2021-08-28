@@ -21,7 +21,7 @@ class _AppHeader extends React.Component {
                     <li ><NavLink to="/book"><img onClick={() => this.setState({ isNavOpen: false })} src='img\books-logo.png' /></NavLink></li>
                     <li ><NavLink to="/keepApp"><img onClick={() => this.setState({ isNavOpen: false })} src='img\keep-logo.png' /></NavLink></li>
                     <li ><NavLink to="/emailApp"><img onClick={() => this.setState({ isNavOpen: false })} src='img\mail-logo.png' /></NavLink></li>
-                    <li onClick={() => this.setState({ isNavOpen: false })} ><NavLink to="/about">About</NavLink></li>
+                    {/* <li onClick={() => this.setState({ isNavOpen: false })} ><NavLink to="/about">About</NavLink></li> */}
                 </ul>
 
             </section>

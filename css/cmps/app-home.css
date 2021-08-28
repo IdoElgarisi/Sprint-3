@@ -1,8 +1,8 @@
-.main-layout{
-    background-color: rgb(201, 201, 201);
-    background-image: url('/img/home-img.jpg');
-    height: 50vh;
-    background-size: cover;
-    background-repeat: no-repeat;
+.home-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: rgb(201, 201, 201); */
     /* clip-path: polygon(100% 0, 100% 38%, 52% 89%, 18% 100%, 0% 38%); */
 }
+

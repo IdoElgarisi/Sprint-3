@@ -3,6 +3,9 @@
 @import url('./parts/helpers.css');
 @import url('./cmps/app-header.css');
 @import url('./cmps/app-home.css');
+@import url('./cmps/app-main.css');
+@import url('./cmps/app-about.css');
+@import url('./cmps/app-footer.css');
 @import url('../css/apps/keep/note-list.css');
 @import url('../css/apps/keep/add-note.css');
 @import url('../css/apps/keep/note-setup.css');

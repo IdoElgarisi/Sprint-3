@@ -14,7 +14,10 @@ export class KeepApp extends React.Component {
         const { mailId } = this.props.match.params
         if (mailId) {
             (emailService.getMailById(mailId))
-                .then((res) => this.addMailToNotes(res))
+                .then((res) => {
+                    console.log(res);
+                    this.addMailToNotes(res)
+                })
         }
         this.loadNotes();
     }
@@ -31,16 +34,19 @@ export class KeepApp extends React.Component {
     onSetFilter = (filterBy) => {
         this.setState({ filterBy }, this.loadNotes)
     }
-    addMailToNotes(mail) {
-        console.log('Mail: ', mail);
-        const { body, subject } = mail
+
+    addMailToNotes = (mail) => {
+        console.log(mail);
+        let { body, subject } = mail
+        if (!body) body = 'Empty Body'
+        if (!subject) subject = 'My Email'
         const newNote = {}
         newNote.type = 'note-txt'
         newNote.isPinned = false
         newNote.info = { title: subject, txt: body }
         newNote.style = { backgroundColor: 'lightblue' }
         keepService.addNote(newNote)
-            .then(() => '')
+            .then(() => console.log('saved'))
     }
 
 
