@@ -6,6 +6,7 @@ import { EmailDetails } from './js/apps/mail/pages/emailDetails.jsx'
 import { SendMail } from './js/apps/mail/pages/sendMail.jsx'
 import { AppHeader } from './js/cmps/AppHeader.jsx'
 import { Home } from './js/pages/Home.jsx';
+import {BookApp} from './js/apps/book/pages/BookApp.jsx'
 
 
 
@@ -21,6 +22,7 @@ export function App() {
           <Route path="/emailApp/:noteId" component={EmailApp} />
           <Route path="/emailApp" component={EmailApp} />
           <Route path="/keepApp" component={KeepApp} />
+          <Route path="/bookApp" component={BookApp} />
           <Route path="/" component={Home} />
         </Switch>
       </main>

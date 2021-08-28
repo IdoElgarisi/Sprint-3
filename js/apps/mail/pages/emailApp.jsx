@@ -109,8 +109,8 @@ export class EmailApp extends React.Component {
                             <NavLink to="/emailApp/newMail" className="new-mail-btn flex " onClick={() => { this.setState({ active: null, selectedEmail: true }) }} ><div className="add-img"></div> <p>New Mail</p></NavLink>
                             <nav className="main-nav-side "><EmailNav mails={mails} onNewEmail={this.onNewEmail} loadEmails={this.loadEmails} onSetFilter={this.onSetFilter} /></nav>
                         </section>
-                        <header className=" email-header flex" >
-                            <section className="mails-list-header flex">
+                        <header className=" email-header flex " >
+                            <section className="mails-list-header flex ">
                                 <h1> <i className="fa fa-envelope"></i> Ail App</h1>
                                 <div className="filter-sort-container">
                                     <EmailFilter onSetFilter={this.onSetFilter} />
