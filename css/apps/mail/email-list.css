@@ -16,10 +16,10 @@
 
 @media (min-width:450px) {
     .email-list {
-        width: 480px;
+        width: 600px;
         border: 1px solid gray;
         margin: 0 auto;
         background-color: #e6eff6;
-        margin-inline-start: 50px;
+        margin-inline-start: 100px;
     }
 }

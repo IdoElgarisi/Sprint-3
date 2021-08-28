@@ -9,10 +9,6 @@
     width: 150px;
 }
 
-.btn-menu.active  .mail-nav-bar {
-    transform: translateX(100%);
-}
-
 .mail-nav-bar>* {
     list-style: none;
     text-decoration: none;
@@ -31,18 +27,14 @@
     text-decoration: none;
     background-color: rgb(241, 252, 241);
     color: #222;
-    ;
     padding: 5px;
     height: 40px;
     width: 40px;
     border-radius: 25px;
 }
 
-/* .btn-menu.active + .mail-nav-bar{
-    transform: translateX(-100%);
-} */
 
-/* .screen {
+.screen {
     position: fixed;
     top: 0;
     left: 0;
@@ -53,7 +45,16 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity .6s;
-}  */
+}
+
+.btn-menu.active ~.mail-nav-bar {
+    transform: translateX(0%);
+    opacity: 2;
+}
+.btn-menu.active +.screen {
+    opacity: 1;
+    pointer-events: auto;
+}
 
 .add-img {
     width: 30px;
@@ -80,7 +81,7 @@
         box-shadow: 0px 0px 0px transparent;
         flex-direction: column;
         transform: translateX(-100%);
-        transition: .6s;
+        transition: 1s;
         background-color: gray;
     }
     .new-mail-btn p {
@@ -89,12 +90,20 @@
 }
 
 @media (min-width:450px) {
+    .btn-menu {
+        display: none;
+    }
     .mail-nav {
         background-color: rgb(221, 221, 221);
         background-color: rgb(220, 221, 221);
         width: 200px;
         height: 100vh;
         padding: 5px;
+        position: absolute;
+        left: 0;
+        top: 220px;
+        /* z-index: -1; */
+        /* padding-top: 100px; */
     }
     .mail-nav-bar {
         padding: 5px;
@@ -113,7 +122,7 @@
         text-decoration: none;
         color: #222;
         background-color: honeydew;
-        margin: 0 auto;
+        margin-inline-start: 15px;
     }
     .new-mail-btn:hover {
         position: relative;

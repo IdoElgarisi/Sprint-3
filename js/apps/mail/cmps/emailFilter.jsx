@@ -1,3 +1,5 @@
+import { EmailSort } from "./emailSort";
+
 export class EmailFilter extends React.Component {
     state = {
         filterBy: {
@@ -8,7 +10,9 @@ export class EmailFilter extends React.Component {
 
     handleChange = (ev) => {
         const field = ev.target.name
-        const value = ev.target.value
+        let value = ev.target.value
+        // if (value === 'read') value = true;
+        // if (value === 'unread') value = false;
         this.setState({ filterBy: { ...this.state.filterBy, [field]: value } }, () => {
             this.props.onSetFilter(this.state.filterBy)
         });
@@ -18,12 +22,7 @@ export class EmailFilter extends React.Component {
         ev.preventDefault();
         this.props.onSetFilter(this.state.filterBy)
     };
-    // onReadFilter = (ev) => {
-    //     const value = ev.target.value
-    //     console.log('hi',value);
 
-
-    // }
 
     render() {
         const { txt, isRead } = this.state.filterBy
@@ -33,24 +32,24 @@ export class EmailFilter extends React.Component {
                     <div className="txt-filter">
                         <label htmlFor='by-txt'></label>
                         <input
-                        className="search-box"
+                            className="search-box"
                             name='txt'
                             id='by-txt'
                             type='text'
                             placeholder='Search Mails...'
                             value={txt}
+                            autoComplete="off"
                             onChange={this.handleChange}
                         />
                     </div>
-                    <div className="read-filter">
+                    {/* <div className="read-filter">
                         <label className="filter-by" htmlFor="filterBy">Filter : </label>
-                        <select name="isRead" onChange={this.onReadFilter} >
+                        <select name="isRead" onChange={this.handleChange} >
                             <option name="isRead" value='read' >Read</option>
                             <option name="isRead" value='unread' >Unread</option>
                         </select>
-                    </div>
-
-                    <button>Filter</button>
+                    </div> */}
+                    <button className="filter-btn">Filter</button>
                 </form>
             </section>
         )

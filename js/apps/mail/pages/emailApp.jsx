@@ -1,4 +1,4 @@
-const { NavLink, Route } = ReactRouterDOM
+const { NavLink, Route, Switch } = ReactRouterDOM
 import { EmailList } from '../cmps/emailList.jsx';
 import { EmailSort } from '../cmps/emailSort.jsx';
 import { emailService } from '../services/email.service.js'
@@ -13,15 +13,17 @@ export class EmailApp extends React.Component {
         mails: [],
         filterBy: null,
         selectedEmail: null,
-        active: false
+
     };
 
     componentDidMount() {
         this.loadEmails();
         this.onSetSort('newest')
+
     }
 
     loadEmails = () => {
+        this.setState({ selectedEmail: null })
         emailService.query(this.state.filterBy).then((mails) => {
             this.setState({ mails })
         });
@@ -37,56 +39,57 @@ export class EmailApp extends React.Component {
 
     onDeleteMail = (id) => {
         emailService.deleteMail(id)
-            .then(this.loadEmails())
+            .then(this.loadEmails)
     }
     onNewEmail = () => {
         const { isSendEmail } = this.state
         this.setState({ isSendEmail: !isSendEmail })
     }
-
-    onReadBtn(id, mode) {
-        console.log('mode', mode);
-        console.log('id', id);
-        emailService.getMailById(id)
-            .then((mail) => {
-                console.log(mail);
-                mail.isRead = !mode
-                console.log(this);
-            })
-
+    onChangeMode = (id, mode) => {
+        emailService.changeMode(id, mode)
+            .then(this.loadEmails)
     }
-    toggleClass() {
-        const currentState = this.state.active;
-        this.setState({ active: !currentState });
-    };
 
+
+    loggedinUser = {
+        email: 'user@appsus.com',
+        fullname: 'Mahatma Appsus'
+    }
     render() {
-        const { mails, selectedEmail, active } = this.state;
+        const { mails, selectedEmail } = this.state;
         return (
-            <section className="mails-layout">
+            <section className="mails-layout"  >
+                   {/* <div className="screen" ></div> */}
+                <section className="mails-layout" >
 
-                <header className=" email-header flex" >
-                    <section className="mails-list-header flex">
-                        <button onClick={() => this.toggleClass()} className={`btn-menu ${active ? 'active' : ' '}`}><i className="fa fa-bars"></i></button>
-                        <h1> <i className="fa fa-envelope"></i> Ail App</h1>
-                        <div className="filter-sort-container">
-                            <EmailFilter onSetFilter={this.onSetFilter} />
-                            <EmailSort onSetSort={this.onSetSort} />
-                        </div>
+                    <header className=" email-header flex" >
+                        <section className="mails-list-header flex">
+                            <h1> <i className="fa fa-envelope"></i> Ail App</h1>
+                            <div className="filter-sort-container">
+                                <EmailFilter onSetFilter={this.onSetFilter} />
+                                <EmailSort onSetSort={this.onSetSort} />
+
+                            </div>
+                            <div className="user-icon"><p>{this.loggedinUser.fullname.charAt(0).toUpperCase()}</p></div>
+                        </section>
+                    </header>
+                    <section>
+                        <NavLink to="/emailApp/newMail" className="new-mail-btn flex " onClick={() => { this.setState({ active: null, selectedEmail: true }) }} ><div className="add-img"></div> <p>New Mail</p></NavLink>
+                        <nav className="main-nav-side "><EmailNav mails={mails} onNewEmail={this.onNewEmail} loadEmails={this.loadEmails} onSetFilter={this.onSetFilter} /></nav>
                     </section>
-                </header>
-                {active &&
-                <nav className="main-nav-side "><EmailNav onNewEmail={this.onNewEmail} loadEmails={this.loadEmails} onSetFilter={this.onSetFilter} /></nav>
-                }
-                <section className="flex">
-                    <main className="mails-main-layout">
-                        <EmailList mails={mails} onReadBtn={this.onReadBtn} onDeleteMail={this.onDeleteMail} />
-                        <Route path="/emailApp/newMail" loadEmails={this.loadEmails} component={SendEmail} />
-                        <Route path="/emailApp/:mailId" component={EmailDetails} />
-                    </main>
-                </section>
+                    <section className="flex">
+                        <main className="mails-main-layout" >
+                            <EmailList onChangeMode={this.onChangeMode} mails={mails} onReadBtn={this.onReadBtn} onDeleteMail={this.onDeleteMail} />
+                            <Switch>
+                                <Route path="/emailApp/newMail" loadEmails={this.loadEmails} component={SendEmail} />
+                                <Route path="/emailApp/:mailId" component={EmailDetails} />
+                            </Switch>
+                        </main>
 
+                    </section>
+                </section >
             </section >
+
         )
     }
 }

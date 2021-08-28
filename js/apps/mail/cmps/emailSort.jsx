@@ -18,6 +18,7 @@ export class EmailSort extends React.Component {
                 <select name="sortBy" onChange={this.handleChange} >
                     <option value="newest" >Newest</option>
                     <option value="oldest">Oldest</option>
+                    <option value="title">Title</option>
                 </select>
             </section>
         )

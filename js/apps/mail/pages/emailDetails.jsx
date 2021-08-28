@@ -1,20 +1,26 @@
 import { emailService } from '../services/email.service.js'
 import { EmailNav } from '../cmps/emailSideNav.jsx';
+const { NavLink } = ReactRouterDOM
 export class EmailDetails extends React.Component {
     state = { mail: null }
     componentDidMount() {
         this.loadMail()
+
     }
+
     loadMail = () => {
         const id = this.props.match.params.mailId
         emailService.getMailById(id)
             .then(mail => {
-                // if (!mail) this.props.history.push('/emailApp')
+                if (!mail) return
+                mail.isRead = true
                 this.setState({ mail: mail })
             })
     }
+
     onBack = () => {
         this.props.history.push('/emailApp')
+
     }
 
     render() {
@@ -29,16 +35,25 @@ export class EmailDetails extends React.Component {
                 <section className="full-mail-display">
                     <header className="mail-header flex"><h4>{mail.subject}</h4> <i onClick={this.onBack} className="fa fa-times"></i></header>
                     <section className="mail-display-info-line flex space-between">
+                        <div className="mail-title-line flex space-between">
+                            <div className="mail-title-head ">
+                                <h4>{mail.subject}</h4>
+                            </div>
+                            <div className="date-container flex">
+                                <p > {`${hours}:${minutes}`}</p>
+                                <p>{date}  </p>
+                            </div>
+                        </div>
                         <div className="from-container">
-                            { mail.status === 'sent' ? <p> <span>To :</span>{mail.to}</p>  : <p> <span>From :</span>{mail.from}</p>}
+                            {mail.status === 'sent' ? <p> <span>To :</span>{mail.to}</p> : <p> <span>From:</span>{mail.from}</p>}
                         </div>
-                        <div className="date-container flex space-between">
-                            <p>{date}</p>
-                            <p >{`${hours}:${minutes}`}</p>
-                        </div>
+
                     </section>
                     <div className="msg-container">
                         <p>{mail.body}</p>
+                    </div>
+                    <div className="btns-container">
+                        <NavLink exact to={`keepApp/${mail.id}`}><button>Notes</button></NavLink>
                     </div>
                 </section>
             </main>

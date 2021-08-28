@@ -1,20 +1,14 @@
-// import { utilService } from '../../../services/util.service.js'
 import { emailService } from "../services/email.service.js"
 
 
 export class SendEmail extends React.Component {
-    time = Date.now()
-    // dateToShow = `${new Date.now().getDate()}.${new Date.now().getMonth()}.${new Date.now().getFullYear()}`
-    // hours = new Date.now().getHours() < 10 ? `0${new Date.now().getHours()}` : new Date.now().getHours();
-    // minutes = new Date.now().getMinutes() < 10 ? `0${new Date.now().getMinutes()}` : new Date.now().getMinutes();
-
     loggedinUser = {
         email: 'user@appsus.com',
         fullname: 'Mahatma Appsus'
     }
 
     state = {
-        id: `${utilService.makeId()}`,
+        id: `${this.makeId}`,
         user: `${this.loggedinUser.fullname}`,
         subject: '',
         body: '',
@@ -25,9 +19,18 @@ export class SendEmail extends React.Component {
         status: 'drafts',
         labels: []
     }
+    draftMail = this.state
     inputRef = React.createRef()
     componentDidMount() {
         this.inputRef.current.focus()
+        this.interval = setInterval(() => {
+            this.draftMail = this.state;
+
+        }, 5000)
+
+    }
+    componentWillUnmount() {
+        if (this.state.status === 'sent') clearInterval(this.interval)
     }
 
 
@@ -37,20 +40,43 @@ export class SendEmail extends React.Component {
         this.setState(prevState => ({ ...prevState, [field]: value }))
     }
     onBack = () => {
-        this.props.history.push('/emailApp')
+        this.draftMail.sentAt = Date.now()
+        if (!this.draftMail) {
+            this.props.history.push(`/emailApp`)
+        } else setTimeout(() => {
+            emailService.addMail(this.draftMail)
+                .then(() => {
+                    this.props.loadMail
+                    this.props.history.push(`/emailApp`);
+                })
+
+        }, 100);
+
     }
     formSubmited = (ev) => {
 
         const id = this.state.id
         ev.preventDefault()
-        this.setState(prevState => ({ ...prevState, sentAt: this.time, status: 'sent' }))
+        if (this.state.subject === '') this.setState(prevState => ({ ...prevState, subject: '(No Subject...)' }))
+        this.setState(prevState => ({ ...prevState, sentAt: Date.now(), status: 'sent' }))
         setTimeout(() => {
             emailService.addMail(this.state)
                 .then(() => {
                     this.props.loadMail
                     this.props.history.push(`/emailApp`);
                 })
+
         }, 100);
+    }
+    makeId = (length = 6) => {
+        var txt = '';
+        var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+        for (var i = 0; i < length; i++) {
+            txt += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+
+        return txt;
     }
 
     render() {
@@ -58,6 +84,9 @@ export class SendEmail extends React.Component {
             <main className="new-mail-layout">
                 <section className="new-mail-display">
                     <header className="mail-header flex"><h4>New Message</h4> <i onClick={this.onBack} className="fa fa-times"></i></header>
+                    <div className="from-container">
+                        <p> <span>From :</span>{this.loggedinUser.email}</p>
+                    </div>
                     <form action="sendMail">
                         <div className="input-group">
                             <input type="text" ref={this.inputRef} autoComplete="off" name="to" placeholder="To..." onChange={this.handleChange} />
@@ -68,7 +97,12 @@ export class SendEmail extends React.Component {
                         <div className="input-group">
                             <textarea name="body" className="body-area" rows="6" placeholder="Body..." onChange={this.handleChange}></textarea>
                         </div>
-                        <button onClick={this.formSubmited}>Send </button>
+                        {/* here wil be link to notes */}
+                        <div className="send-area-container">
+                           
+                            <button className="send-btn" onClick={this.formSubmited}>Send </button>
+
+                        </div>
                     </form>
                 </section>
             </main>
