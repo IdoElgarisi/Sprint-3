@@ -18,8 +18,20 @@ export const keepService = {
 }
 
 function query(filterBy) {
+    if (filterBy) {
+        let { noteType, txt } = filterBy
+        if (!noteType || noteType == 'all') {
+            const noteToShow = notes.filter((currNote) => currNote.info.title.toLowerCase().includes(txt.toLowerCase()))
+            return Promise.resolve(noteToShow)
+        }
+        const noteToShow = notes.filter(currNote => {
+            return currNote.info.title.toLowerCase().includes(txt.toLowerCase()) && currNote.type === noteType
+        })
+        console.log(noteToShow);
+        return Promise.resolve(noteToShow)
+    }
 
-    return notes
+    return Promise.resolve(notes)
 }
 
 function updateNote(note) {
@@ -64,11 +76,8 @@ function setPinnedNote(pinnedNote) {
     }
     else {
         notes.splice(noteIdx, 1)
-
-        // const note = notes.shift()
         notes.push(pinnedNote)
     }
-
     _saveToStorage()
     return Promise.resolve()
 
@@ -88,16 +97,10 @@ function updateNoteColor(currNote, color) {
 
 function updateDoneTodo(note, newTodo) {
     const { todos } = note.info
-    //     const note = notes.find(note => noteId === note.id)
     var todoIdx = todos.findIndex(todo => todo.id === newTodo.id)
     todos[todoIdx].isDone = !todos[todoIdx].isDone
-    // console.log(todoIdx);
-
-
-    // const todoIdx = todos.indexOf(todo)
-    // todos[todoIdx].doneAt = !todos[todoIdx].doneAt ? new Date() : null
+    doneAt = !todos[todoIdx].doneAt ? new Date() : null
     note.info.todos = todos
-    // console.log(note.info.todos);
     _saveToStorage()
     return Promise.resolve(todos)
 }
@@ -106,96 +109,272 @@ function createNotes() {
     if (notes) return notes;
     notes = [
         {
-            id: "n101",
-            type: "note-txt",
-            isPinned: false,
-            info: {
-                title: 'Lets Go',
-                txt: 'Fullstack Me Baby!'
+            "type": "note-todo",
+            "isPinned": true,
+            "info": {
+                "title": "todo",
+                "todos": [
+                    {
+                        "id": "XPNDr3",
+                        "isDone": false,
+                        "txt": "Develop New Logo"
+                    },
+                    {
+                        "id": "or4ial",
+                        "isDone": true,
+                        "txt": "Set New Image"
+                    }
+                ]
             },
-            style: {
-                backgroundColor: "#cce6ff"
+            "style": {
+                "backgroundColor": "#f0edd6"
+            },
+            "id": "iV3REq"
+        },
+        {
+            "type": "note-img",
+            "isPinned": true,
+            "info": {
+                "title": " Amazing Tree",
+                "url": "https://i.pinimg.com/originals/31/38/11/313811274a28746379ebf4d4fcf7842b.jpg"
+            },
+            "style": {
+                "backgroundColor": "lightblue"
+            },
+            "id": "XLsJuR"
+        },
+        {
+            "id": "n106",
+            "type": "note-video",
+            "isPinned": true,
+            "info": {
+                "title": "Amazing Sea",
+                "youtubeId": "qcSSpoTrbXk"
+            },
+            "style": {
+                "backgroundColor": "#aec9eb"
             }
         },
         {
-            id: "n102",
-            type: "note-img",
-            isPinned: false,
-            info: {
-                url: "https://www.iucn.org/sites/dev/files/styles/850x500_no_menu_article/public/blue-morpho-350x150-matthiasfr-pixabay-crop.jpg?itok=Y8DXROpH",
-                title: "Bobi and Me"
+            "id": "RdAH2d",
+            "type": "note-txt",
+            "isPinned": true,
+            "info": {
+                "title": "Lets Go",
+                "txt": "Fullstack Me Baby!"
             },
-            style: {
-                backgroundColor: "#cce6ff"
+            "style": {
+                "backgroundColor": "#c3e7e8"
             }
         },
         {
-            id: "n103",
-            type: "note-todo",
-            isPinned: false,
-            info: {
-                title: 'Get my stuff together',
-                todos: [
-                    { id: utilService.makeId(), txt: 'Driving liscence', isDone: true },
-                    { id: utilService.makeId(), txt: 'Coding power', isDone: false },]
+            "id": "n102",
+            "type": "note-img",
+            "isPinned": true,
+            "info": {
+                "title": "Bobi and Me",
+                "url": "https://www.iucn.org/sites/dev/files/styles/850x500_no_menu_article/public/blue-morpho-350x150-matthiasfr-pixabay-crop.jpg?itok=Y8DXROpH"
             },
-            style: {
-                backgroundColor: "#cce6ff"
+            "style": {
+                "backgroundColor": "#f0edd6"
             }
         },
         {
-            id: "n104",
-            type: "note-txt",
-            isPinned: false,
-            info: {
-                title: 'My Favorites',
-                txt: "Common Lets Read!"
+            "id": "gnj4Lz",
+            "type": "note-txt",
+            "isPinned": false,
+            "info": {
+                "title": "Lets Go",
+                "txt": "Fullstack Me Baby!"
             },
-            style: {
-                backgroundColor: "#cce6ff"
+            "style": {
+                "backgroundColor": "#c3e7e8"
             }
         },
         {
-            id: "n105",
-            type: "note-img",
-            isPinned: false,
-            info: {
-                url: "https://img.etimg.com/photo/msid-68721421,quality-100/nature.jpg",
-                title: "Bobi and Me"
+            "id": "n103",
+            "type": "note-todo",
+            "isPinned": false,
+            "info": {
+                "title": "Get my stuff together",
+                "todos": [
+                    {
+                        "id": "cZNIHM",
+                        "txt": "Driving liscence",
+                        "isDone": true
+                    },
+                    {
+                        "id": "hR9IBw",
+                        "txt": "Coding power",
+                        "isDone": false
+                    }
+                ]
             },
-            style: {
-                backgroundColor: "#cce6ff"
+            "style": {
+                "backgroundColor": "#cce6ff"
             }
         },
         {
-            id: "n106",
-            type: "note-video",
-            isPinned: false,
-            info: {
-                title: 'Amazing Sea',
-                youtubeId: "qcSSpoTrbXk"
+            "id": "n104",
+            "type": "note-txt",
+            "isPinned": false,
+            "info": {
+                "title": "My Favorites",
+                "txt": "Common Lets Read!"
             },
-            style: {
-                backgroundColor: "#cce6ff"
+            "style": {
+                "backgroundColor": "#e1d590"
             }
         },
         {
-            id: "n107",
-            type: "note-todo",
-            isPinned: false,
-            info: {
-                title: 'Home Tasks',
-                todos: [
-                    { id: utilService.makeId(), txt: 'Do Homework', isDone: true },
-                    { id: utilService.makeId(), txt: 'Need Make Something', isDone: false },
-                    { id: utilService.makeId(), txt: 'Need Finish css', isDone: true },
-                    { id: utilService.makeId(), txt: 'Finish Play', isDone: true }]
+            "id": "n105",
+            "type": "note-img",
+            "isPinned": false,
+            "info": {
+                "title": "Bobi and Me",
+                "url": "https://img.etimg.com/photo/msid-68721421,quality-100/nature.jpg"
             },
-            style: {
-                backgroundColor: "#cce6ff"
+            "style": {
+                "backgroundColor": "#cce6ff"
             }
+        },
+        {
+            "id": "aCIdcC",
+            "type": "note-video",
+            "isPinned": false,
+            "info": {
+                "title": "Amazing Sea",
+                "youtubeId": "qcSSpoTrbXk"
+            },
+            "style": {
+                "backgroundColor": "#a1d7c9"
+            }
+        },
+        {
+            "id": "n107",
+            "type": "note-todo",
+            "isPinned": false,
+            "info": {
+                "title": "Home Tasks",
+                "todos": [
+                    {
+                        "id": "XLLESK",
+                        "txt": "Do Homework",
+                        "isDone": true
+                    },
+                    {
+                        "id": "6LmJgy",
+                        "txt": "Need Make Something",
+                        "isDone": false
+                    },
+                    {
+                        "id": "EQSEzd",
+                        "txt": "Need Finish css",
+                        "isDone": true
+                    },
+                    {
+                        "id": "EL8oXN",
+                        "txt": "Finish Play",
+                        "isDone": true
+                    }
+                ]
+            },
+            "style": {
+                "backgroundColor": "#f0edd6"
+            }
+        },
+        {
+            "type": "note-video",
+            "isPinned": false,
+            "info": {
+                "title": "video",
+                "youtubeId": "svn-JH8WXDY"
+            },
+            "style": {
+                "backgroundColor": "lightblue"
+            },
+            "id": "VL4nye"
+        },
+        {
+            "type": "note-video",
+            "isPinned": false,
+            "info": {
+                "title": "video",
+                "youtubeId": "Zv11L-ZfrSg"
+            },
+            "style": {
+                "backgroundColor": "lightblue"
+            },
+            "id": "kwkHmV"
+        },
+        {
+            "type": "note-todo",
+            "isPinned": false,
+            "info": {
+                "title": "todo",
+                "todos": [
+                    {
+                        "id": "DLarN6",
+                        "isDone": true,
+                        "txt": "Work "
+                    },
+                    {
+                        "id": "jsObYV",
+                        "isDone": false,
+                        "txt": " Shopping "
+                    },
+                    {
+                        "id": "fNqDwH",
+                        "isDone": false,
+                        "txt": " HomeWork"
+                    }
+                ]
+            },
+            "style": {
+                "backgroundColor": "lightblue"
+            },
+            "id": "QqG5FR"
+        },
+        {
+            "type": "note-txt",
+            "isPinned": false,
+            "info": {
+                "txt": "asdasdasd, asdasd, asdasd"
+            },
+            "style": {
+                "backgroundColor": "lightblue"
+            },
+            "id": "qbdLhH"
+        },
+        {
+            "type": "note-todo",
+            "isPinned": false,
+            "info": {
+                "title": "todo",
+                "todos": [
+                    {
+                        "id": "jAtDx1",
+                        "isDone": false,
+                        "txt": "Home"
+                    },
+                    {
+                        "id": "w7erbG",
+                        "isDone": true,
+                        "txt": "LO asd"
+                    },
+                    {
+                        "id": "D0VMfe",
+                        "isDone": false,
+                        "txt": "ddd"
+                    }
+                ]
+            },
+            "style": {
+                "backgroundColor": "lightblue"
+            },
+            "id": "I3w7XF"
         }
-    ];
+    ]
     storageService.saveToStorage(KEY, notes)
     return notes
 }

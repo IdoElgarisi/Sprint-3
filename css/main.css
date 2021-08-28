@@ -8,6 +8,8 @@
 @import url('../css/apps/keep/note-img.css');
 @import url('../css/apps/keep/edit-note.css');
 @import url('../css/apps/keep/note-video.css');
+@import url('../css/apps/keep/note-filter.css');
+@import url('../css/cmps/user-msg.css');
 
 
 @import url('./apps/mail/email-app.css');

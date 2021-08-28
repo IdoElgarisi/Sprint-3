@@ -22,7 +22,7 @@ export class EditNote extends React.Component {
 
             <section className="note-edit">
                 <form onSubmit={this.onSubmit}>
-                    <input type="text" name="txtInput" placeholder='edit you note..' value={txtInput} onChange={this.handleChange} autoFocus />
+                    <input type="text" name="txtInput" placeholder='edit you note..' value={txtInput} onChange={this.handleChange}  />
                     <button className="edit-note-btn  far fa-save clear-btn"></button>
                 </form>
             </section>

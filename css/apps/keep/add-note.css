@@ -3,9 +3,8 @@
     padding: 10px;
     /* width: 80%; */
     font-size: 1.5em;
-    justify-content: center;
-
-
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .add-note button {
@@ -15,7 +14,6 @@
     border: unset;
     cursor: pointer;
 }
- 
 
 .add-note form {
     display: flex;
@@ -36,6 +34,19 @@
     color: rgb(56, 55, 55);
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
-.note-type-container button:not(.active-type):hover{
+
+.note-type-container button:not(.active-type):hover {
     box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+@media (max-width: 550px) {
+    .add-note {
+        flex-direction: column;
+        /* padding: 5px; */
+        /* justify-content: space-between; */
+    }
+    .note-type-container {
+        display: flex;
+        align-items: center;
+    }
 }

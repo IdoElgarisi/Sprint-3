@@ -1,6 +1,8 @@
 import { keepService } from "../services/keepService.js"
 import { ColorPalette } from "./ColorPalette.jsx"
 import { EditNote } from "./note-edit.jsx"
+const { Link } = ReactRouterDOM;
+
 
 export class NoteSetup extends React.Component {
 
@@ -56,6 +58,15 @@ export class NoteSetup extends React.Component {
         keepService.copyNote(note)
             .then(() => loadNotes())
     }
+    onSendMail = () => {
+        const { note } = this.state
+        console.log(note);
+
+
+        // <button><Link to={`/mail/compose/${note.id}`}>
+        //     <span className="material-icons">email</span>
+        // </Link></button>
+    }
 
     render() {
         const { note, isShowPalette, isEditMode } = this.state
@@ -66,7 +77,7 @@ export class NoteSetup extends React.Component {
                     <button onClick={this.togglePalette} className="fa fas fa-palette clear-btn"></button>
                     <button onClick={this.onDeleteNote} className="fas fa-trash clear-btn"></button>
                     <button onClick={this.onPinnedNote} className="fa fas fa-thumbtack clear-btn"></button>
-                    <button className="fas fa-envelope-open-text clear-btn"></button>
+                    <Link to={`/emailApp/${note.id}`}><button onClick={(this.onSendMail)} className="fas fa-envelope-open-text clear-btn"></button></Link>
                     <button onClick={this.toggleEditMode} className="fas fa-edit clear-btn"></button>
                     <button onClick={this.onCopyNote} className="fas fa-copy clear-btn"></button>
                 </div>
