@@ -29,8 +29,8 @@ export class EmailApp extends React.Component {
 
     }
     getnoteBody(note) {
-      
-        if (note.type === 'note-txt')  note.info.body
+
+        if (note.type === 'note-txt') note.info.body
         if (note.type === 'note-todo') return note.info.todos.map((todo) => todo.txt)
         if (note.type === 'note-video') {
             return (<iframe width="100%" height="200px"
@@ -45,19 +45,17 @@ export class EmailApp extends React.Component {
     }
     makeNoteMail(note) {
         const { title } = note.info
-        let bodyData = Object.values(note.info)[0]
+        let bodyData = (note.type === 'note-txt') ? Object.values(note.info)[0] : note.info[1]
         const body = this.getnoteBody(note)
-        console.log(body);
-        // console.log(note.info);
         const mailNote = {
             id: emailService.makeId(),
-            subject: bodyData,
+            subject: body[0],
             body: body,
             isRead: false,
             isStared: false,
             sentAt: Date.now(),
             to: ' ',
-            from:'Keep App',
+            from: title,
             fromName: 'Keep App',
             status: 'inbox',
             color: 'indigo',
