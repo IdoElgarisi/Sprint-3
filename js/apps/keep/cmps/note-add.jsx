@@ -32,15 +32,22 @@ export class AddNote extends React.Component {
         if (noteType === 'note-txt') {
             newNote.type = noteType
             newNote.isPinned = false
-            newNote.info = { txt: txtInput }
+            newNote.info = { title: 'My Text', txt: txtInput }
             newNote.style = { backgroundColor: 'lightblue' }
             keepService.addNote(newNote)
-                .then(() => loadNotes());
+                .then(() => {
+                    debugger
+                    // eventBusServicesService.emit('user-msg', { txt: 'saved', type: 'success' })
+                    loadNotes()
+                });
+
         }
+
+
         else if (noteType === 'note-img') {
             newNote.type = noteType
             newNote.isPinned = false
-            newNote.info = { title: 'image', url: txtInput }
+            newNote.info = { title: 'My Image', url: txtInput }
             newNote.style = { backgroundColor: 'lightblue' }
             keepService.addNote(newNote)
                 .then(() => loadNotes());
@@ -49,7 +56,7 @@ export class AddNote extends React.Component {
             newNote.type = noteType
             newNote.isPinned = false
             const urlId = this.getYoutubeId(txtInput)
-            newNote.info = { title: 'video', youtubeId: urlId }
+            newNote.info = { title: 'My Video', youtubeId: urlId }
             newNote.style = { backgroundColor: 'lightblue' }
             keepService.addNote(newNote)
                 .then(() => loadNotes());
@@ -59,9 +66,9 @@ export class AddNote extends React.Component {
             newNote.isPinned = false
             const todos = txtInput.split(',')
             const allTodos = todos.map((todo) => {
-                return { id: utilService.makeId(), isDone: false, txt: todo }
+                return { id: utilService.makeId(), isDone: false, txt: todo.trim() }
             })
-            newNote.info = { title: 'todo', todos: allTodos }
+            newNote.info = { title: 'My todo', todos: allTodos }
             newNote.style = { backgroundColor: 'lightblue' }
             keepService.addNote(newNote)
                 .then(() => loadNotes());
