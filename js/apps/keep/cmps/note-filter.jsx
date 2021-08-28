@@ -9,21 +9,12 @@ export class NoteFilter extends React.Component {
         const { name, value } = ev.target
         console.log(name);
         console.log(value);
-        // const { filterBy } = this.state
-        // const { onSetFilter } = this.props
-        // const value = ev.target.value
         this.setState({ filterBy: { ...this.state.filterBy, [name]: value } }, () => {
             this.props.onSetFilter(this.state.filterBy)
         });
     };
     waitUntil() { }
 
-
-    onSetFilter = (ev) => {
-        // ev.preventDefault();
-        // console.log(ev.target.value);
-        // this.props.onSetFilter(this.state.filterBy)
-    };
 
     render() {
         const { noteType, txt } = this.state
