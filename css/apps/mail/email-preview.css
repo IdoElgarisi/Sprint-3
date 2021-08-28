@@ -24,7 +24,6 @@ a {
     margin: 0 auto;
     margin-block-start: 30px;
     max-height: 60vh;
-    overflow-y: scroll;
     width: 80%;
 }
 
@@ -197,6 +196,7 @@ td {
     .mails-main-layout {
         width: 80%;
         max-width: 920px;
+        overflow-y: scroll;
     }
     .fa-expand {
         display: block;

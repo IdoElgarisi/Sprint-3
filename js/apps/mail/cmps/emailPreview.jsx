@@ -28,7 +28,7 @@ export class EmailPreview extends React.Component {
                     <NavLink to={`/emailApp/${mail.id}`} >
                         <div className="mail-title flex ">
                             <p className={`mail-subject ${mail.isRead ? 'read' : 'unread'} `}>{mail.status === 'sent' ? mail.to : mail.from}</p>
-                            <p className="mail-body">{mail.subject}</p>
+                            <p className="mail-body">{mail.subject.substring(0,25)}...</p>
                         </div>
                     </NavLink>
                 </td>
