@@ -14,7 +14,7 @@ export function About() {
                 <div className="person-card flex">
                     <h3>Ido  Elgarisi</h3>
                     <img src="../../img/profile-img/ido.jpg" />
-                    <p>22 years old from Pardes-Hana,Israel.
+                    <p>26 years old from Jerusalem,Israel.
                         Loving to design new things and create and build web-application.
                         studying web development in Coding-Academy.</p>
                 </div>

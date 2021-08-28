@@ -7,18 +7,16 @@ export class NoteFilter extends React.Component {
     };
     handleChange = (ev) => {
         const { name, value } = ev.target
-        console.log(name);
-        console.log(value);
         this.setState({ filterBy: { ...this.state.filterBy, [name]: value } }, () => {
             this.props.onSetFilter(this.state.filterBy)
         });
     };
+
     waitUntil() { }
 
 
     render() {
         const { noteType, txt } = this.state
-        console.log(txt);
         return (
             <section className="note-filter">
                 <select className="select-filter" name={'noteType'} onChange={this.handleChange}>

@@ -22,13 +22,12 @@ function query(filterBy) {
     if (filterBy) {
         let { noteType, txt } = filterBy
         if (!noteType || noteType == 'all') {
-            const noteToShow = notes.filter((currNote) => currNote.info.title.toLowerCase().includes(txt.toLowerCase()))
+            const noteToShow = notes.filter(currNote => currNote.info.title.includes(txt.toLowerCase()))
             return Promise.resolve(noteToShow)
         }
         const noteToShow = notes.filter(currNote => {
             return currNote.info.title.toLowerCase().includes(txt.toLowerCase()) && currNote.type === noteType
         })
-        console.log(noteToShow);
         return Promise.resolve(noteToShow)
     }
 
@@ -47,7 +46,6 @@ function copyNote(note) {
     const newNote = { ...note }
     newNote.id = utilService.makeId()
     notes.splice(noteIdx, 0, newNote)
-    console.log(noteIdx);
     _saveToStorage()
     return Promise.resolve()
 }
@@ -69,7 +67,6 @@ function addNote(note) {
 
 function setPinnedNote(pinnedNote) {
     const noteIdx = getNoteId(pinnedNote)
-    console.log('before', pinnedNote.isPinned);
     pinnedNote.isPinned = !pinnedNote.isPinned
     if (pinnedNote.isPinned) {
         notes.splice(noteIdx, 1)
@@ -345,7 +342,8 @@ function createNotes() {
             "type": "note-txt",
             "isPinned": false,
             "info": {
-                "txt": "asdasdasd, asdasd, asdasd"
+                "title": "My- Note!",
+                "txt": "Lets Eat Sushi!"
             },
             "style": {
                 "backgroundColor": "lightblue"

@@ -37,7 +37,6 @@ export class AddNote extends React.Component {
             keepService.addNote(newNote)
                 .then(() => {
                     debugger
-                    // eventBusServicesService.emit('user-msg', { txt: 'saved', type: 'success' })
                     loadNotes()
                 });
 

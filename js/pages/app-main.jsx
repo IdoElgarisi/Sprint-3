@@ -14,14 +14,19 @@ export function Main() {
                         <p>Write emails yours friends</p>
                     </div>
                 </NavLink>
-                <div className="icon-card flex">
-                    <img src="../../img/notes-home.png" />
-                    <p>Edit your notes with friends </p>
-                </div>
-                <div className="icon-card flex">
-                    <img src="../../img/books-home.png" />
-                    <p>Read your favourite Books </p>
-                </div>
+                <NavLink to="/keepApp">
+                    <div className="icon-card flex">
+                        <img src="../../img/notes-home.png" />
+                        <p>Edit your notes with friends </p>
+                    </div>
+                </NavLink>
+                <NavLink to="/bookApp">
+                    <div className="icon-card flex">
+                        <img src="../../img/books-home.png" />
+                        <p>Read your favourite Books </p>
+                    </div>
+                </NavLink>
+
 
             </section>
         </main >
