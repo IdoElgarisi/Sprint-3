@@ -18,26 +18,57 @@
 }
 
 .search-box {
-    width: 300px;
+    width: 260px;
 }
 
 .email-header {
     max-width: 400px;
 }
 
+.user-icon {
+    background-color: indigo;
+    color: white;
+    text-align: center;
+    /* to mobile */
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    border-radius: 15px;
+    margin: 3px;
+    margin-inline-end: 5px;
+    margin-inline-start: 5px;
+}
+
+.user-icon p {
+    line-height: 30px;
+}
+.btn-menu{
+    background-color:rgba(255, 255, 255, 0);
+    border: none;
+    font-size: 1.3rem;
+    margin-inline-start: 10px;
+}
 @media (max-width:450px) {
     .mails-list-header {
         gap: 15px;
+        background-color: rgb(206, 206, 206);
+        padding: 5px;
+        margin: 0 auto;
+        border-radius: 15px;
+        width: 100%;
     }
     .mails-list-header h1 {
+        display: none;
+    }
+    .filter-btn {
         display: none;
     }
 }
 
 @media (min-width:450px) {
-    .btn-menu {
+    /* .btn-menu {
         display: none;
-    }
+    } */
     .mails-list-header {
         gap: 30px;
         align-items: center;

@@ -1,6 +1,5 @@
 import { EmailPreview } from './emailPreview.jsx'
-export function EmailList({ mails, onDeleteMail,onReadBtn }) {
-
+export function EmailList({ mails, onDeleteMail, onReadBtn, onChangeMode }) {
     return (
         <table className="email-list">
             <thead>
@@ -9,7 +8,7 @@ export function EmailList({ mails, onDeleteMail,onReadBtn }) {
                 </tr>
             </thead>
             <tbody>
-                {mails.map(mail => <EmailPreview onReadBtn={onReadBtn} key={mail.id} mail={mail} onDeleteMail={onDeleteMail} />)}
+                {mails.map(mail => <EmailPreview onChangeMode={onChangeMode} onReadBtn={onReadBtn} key={mail.id} mail={mail} onDeleteMail={onDeleteMail} />)}
             </tbody>
         </table>
     )
