@@ -13,7 +13,8 @@ a {
 /* mail line */
 
 .mail-details {
-    margin: auto;
+    /* margin: auto; */
+    width: 100%;
     background-color: rgb(228, 252, 253);
     border-bottom: 1px solid gray;
 }
@@ -21,11 +22,12 @@ a {
 .mails-main-layout {
     /* margin-inline-start: 50px; */
     margin: 0 auto;
+    margin-block-start: 30px;
 }
 
-.mails-layout {
+/* .mails-layout {
     height: 100vh;
-}
+} */
 
 .mail-info {
     height: 45px;
@@ -139,11 +141,14 @@ td {
     display: none;
 }
 
-/* .far.fa-star{
-    color: antiquewhite;
-} */
+.mails-list-container {
+    width: 100%;
+}
 
 @media (max-width:450px) {
+    .mails-main-layout {
+        max-width: 420px;
+    }
     .mails-list-header {
         gap: 15px;
     }
@@ -154,6 +159,9 @@ td {
 }
 
 @media (min-width:450px) {
+    .mails-main-layout {
+        max-width: 420px;
+    }
     .fa-expand {
         display: block;
     }
@@ -164,23 +172,63 @@ td {
         display: block;
     }
     .mail-details {
-        max-width: 500px;
         justify-content: space-between;
     }
     .mail-title {
         margin-inline-start: 20px;
     }
-    /* .mail-edit-btns>* {
-        margin-inline-end: 10px;
-        border: none;
-    } */
     .fas.fa-ellipsis-v {
         display: none;
     }
-   
-    /* .mail-info:hover .mail-edit-btns {
+}
+
+@media (min-width:700px) {
+    .mails-main-layout {
+        width: 80%;
+        max-width: 920px;
+    }
+    .fa-expand {
         display: block;
-    } */
-    /* .mail-info {
-    height: 45px;} */
+    }
+    .sortBy {
+        display: block;
+    }
+    .filterBy {
+        display: block;
+    }
+    .mail-details {
+        justify-content: space-between;
+    }
+    .mail-title {
+        margin-inline-start: 20px;
+    }
+    .fas.fa-ellipsis-v {
+        display: none;
+    }
+}
+
+@media(min-width:900px) {
+    .mails-main-layout {
+        margin-inline-start: 200px;
+    }
+    .mails-list-container {
+        width: 100%;
+    }
+}
+
+@media(min-width:1200px) {
+    .mails-main-layout {
+        min-width: 950px;
+        width: 80%;
+        /* justify-self: center; */
+        margin-inline-start: 200px;
+        justify-content: center;
+    }
+    .mails-list-container {
+        width: 100%;
+    }
+    .mail-details {
+        min-width: 650px;
+        max-width: 70%;
+    }
 }

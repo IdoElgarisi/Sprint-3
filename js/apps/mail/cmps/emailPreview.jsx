@@ -1,10 +1,10 @@
 const { NavLink } = ReactRouterDOM
-// import { emailService } from '../services/email.service.js'
+import { emailService } from '../services/email.service.js'
 export class EmailPreview extends React.Component {
     state = {
         isExpand: true
     }
- 
+
     showTime(removeTime) {
         const { mail } = this.props
         let mailTime = (removeTime) ? mail.removedAt : mail.sentAt;
@@ -19,10 +19,12 @@ export class EmailPreview extends React.Component {
     render() {
         const { mail, onDeleteMail, onChangeMode } = this.props
         const { isExpand } = this.state
+        let color = emailService.getRandomColor()
         return (
             <tr className="mail-details flex " >
-                <td className="mail-icon"><p>{mail.from.charAt(0).toUpperCase()}</p></td>
-                <td  >
+                {/* <td className="mail-icon"></td> */}
+                <td className="flex" >
+                    <div className="mail-icon" style={{ backgroundColor: color }}><p>{mail.from.charAt(0).toUpperCase()}</p></div>
                     <NavLink to={`/emailApp/${mail.id}`} >
                         <div className="mail-title flex ">
                             <p className={`mail-subject ${mail.isRead ? 'read' : 'unread'} `}>{mail.status === 'sent' ? mail.to : mail.from}</p>

@@ -9,10 +9,11 @@ export class EmailFilter extends React.Component {
     };
 
     handleChange = (ev) => {
+     
         const field = ev.target.name
         let value = ev.target.value
-        // if (value === 'read') value = true;
-        // if (value === 'unread') value = false;
+        if (value === 'read') value = true;
+        if (value === 'unread') value = false;
         this.setState({ filterBy: { ...this.state.filterBy, [field]: value } }, () => {
             this.props.onSetFilter(this.state.filterBy)
         });
@@ -42,13 +43,13 @@ export class EmailFilter extends React.Component {
                             onChange={this.handleChange}
                         />
                     </div>
-                    {/* <div className="read-filter">
+                    <div className="read-filter">
                         <label className="filter-by" htmlFor="filterBy">Filter : </label>
                         <select name="isRead" onChange={this.handleChange} >
-                            <option name="isRead" value='read' >Read</option>
-                            <option name="isRead" value='unread' >Unread</option>
+                            <option name="isRead" value='read' >Unread</option>
+                            <option name="isRead" value='unread' >Read</option>
                         </select>
-                    </div> */}
+                    </div>
                     <button className="filter-btn">Filter</button>
                 </form>
             </section>

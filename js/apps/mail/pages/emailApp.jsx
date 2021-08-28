@@ -61,6 +61,7 @@ export class EmailApp extends React.Component {
         emailService.addMail(mailNote)
             .then(() => {
                 this.loadEmails()
+                this.onSetSort('newest')
                 this.props.history.push('/emailApp')
             })
     }
@@ -103,33 +104,35 @@ export class EmailApp extends React.Component {
             <section className="mails-layout"  >
                 {/* <div className="screen" ></div> */}
                 <section className="mails-layout" >
-
-                    <header className=" email-header flex" >
-                        <section className="mails-list-header flex">
-                            <h1> <i className="fa fa-envelope"></i> Ail App</h1>
-                            <div className="filter-sort-container">
-                                <EmailFilter onSetFilter={this.onSetFilter} />
-                                <EmailSort onSetSort={this.onSetSort} />
-
-                            </div>
-                            <div className="user-icon"><p>{this.loggedinUser.fullname.charAt(0).toUpperCase()}</p></div>
+                    <div className="nav-search-conatiner flex">
+                        <section className="nav-show">
+                            <NavLink to="/emailApp/newMail" className="new-mail-btn flex " onClick={() => { this.setState({ active: null, selectedEmail: true }) }} ><div className="add-img"></div> <p>New Mail</p></NavLink>
+                            <nav className="main-nav-side "><EmailNav mails={mails} onNewEmail={this.onNewEmail} loadEmails={this.loadEmails} onSetFilter={this.onSetFilter} /></nav>
                         </section>
-                    </header>
-                    <section>
-                        <NavLink to="/emailApp/newMail" className="new-mail-btn flex " onClick={() => { this.setState({ active: null, selectedEmail: true }) }} ><div className="add-img"></div> <p>New Mail</p></NavLink>
-                        <nav className="main-nav-side "><EmailNav mails={mails} onNewEmail={this.onNewEmail} loadEmails={this.loadEmails} onSetFilter={this.onSetFilter} /></nav>
-                    </section>
-                    <section className="flex">
-                        <main className="mails-main-layout" >
-                            <EmailList onChangeMode={this.onChangeMode} mails={mails} onReadBtn={this.onReadBtn} onDeleteMail={this.onDeleteMail} />
-                            <Switch>
+                        <header className=" email-header flex" >
+                            <section className="mails-list-header flex">
+                                <h1> <i className="fa fa-envelope"></i> Ail App</h1>
+                                <div className="filter-sort-container">
+                                    <EmailFilter onSetFilter={this.onSetFilter} />
+                                    <EmailSort onSetSort={this.onSetSort} />
 
-                                <Route path="/emailApp/newMail" loadEmails={this.loadEmails} component={SendEmail} />
-                                <Route path="/emailApp/:mailId" component={EmailDetails} />
-                            </Switch>
-                        </main>
+                                </div>
+                                <div className="user-icon"><p>{this.loggedinUser.fullname.charAt(0).toUpperCase()}</p></div>
+                            </section>
+                        </header>
 
-                    </section>
+                    </div>
+                    {/* <section className="mails-layout flex"> */}
+                    <main className="mails-main-layout flex" >
+                        <EmailList onChangeMode={this.onChangeMode} mails={mails} onReadBtn={this.onReadBtn} onDeleteMail={this.onDeleteMail} />
+                        <Switch>
+
+                            <Route path="/emailApp/newMail" loadEmails={this.loadEmails} component={SendEmail} />
+                            <Route path="/emailApp/:mailId" component={EmailDetails} />
+                        </Switch>
+                    </main>
+
+                    {/* </section> */}
                 </section >
             </section >
 

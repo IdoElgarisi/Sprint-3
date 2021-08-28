@@ -4,10 +4,10 @@ export function EmailList({ mails, onDeleteMail, onReadBtn, onChangeMode }) {
         <table className="email-list">
             <thead>
                 <tr className="emails-info-line">
-                    <td>Mails</td>
+                
                 </tr>
             </thead>
-            <tbody>
+            <tbody className="mails-list-container">
                 {mails.map(mail => <EmailPreview onChangeMode={onChangeMode} onReadBtn={onReadBtn} key={mail.id} mail={mail} onDeleteMail={onDeleteMail} />)}
             </tbody>
         </table>

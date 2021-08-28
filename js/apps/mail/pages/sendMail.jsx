@@ -89,7 +89,7 @@ export class SendEmail extends React.Component {
                         </div>
                         {/* here wil be link to notes */}
                         <div className="send-area-container">
-                           
+                           <button><i className="fa fa-paperclip" aria-hidden="true"></i></button>
                             <button className="send-btn" onClick={this.formSubmited}>Send </button>
 
                         </div>

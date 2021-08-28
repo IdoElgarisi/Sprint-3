@@ -3,21 +3,29 @@ const { NavLink, withRouter } = ReactRouterDOM
 class _EmailNav extends React.Component {
     state = {
         active: false,
-        mails:this.props.mails
+        mails: this.props.mails
     }
     componentDidMount() {
-        this.setState({mails:this.props.mails})
+        this.setState({ mails: this.props.mails })
     }
-    
-    
+
+
     toggleClass() {
         const currentState = this.state.active;
         this.setState({ active: !currentState });
     };
     onNavClicked(val) {
+        console.log('nac-click', val);
         const { onSetFilter } = this.props
         onSetFilter(val)
         this.toggleClass()
+    }
+    getReadCount() {
+        const { mails } = this.props
+        let mailsCount = mails.length
+        let unreadMailsCount = mails.filter((mail) => { return (mail.isRead === false) }).length
+        if (mailsCount === 0) return 0
+        return (((unreadMailsCount / mailsCount) * 100).toFixed(1))
     }
     render() {
         const { active, mails } = this.state
@@ -26,16 +34,16 @@ class _EmailNav extends React.Component {
                 <button onClick={() => this.toggleClass()} className={`btn-menu ${active ? 'active' : ' '}`}><i className="fa fa-bars"></i></button>
                 <div className="screen" onClick={() => this.toggleClass()} ></div>
                 <ul className="mail-nav-bar">
-                    <li onClick={() => this.onNavClicked('inbox')}><i className="fa fa-inbox"></i><span>Inbox</span> </li>
-                    <li onClick={() => this.onNavClicked('isStared')}><i className="fa fa-star"></i><span>Stared</span> </li>
-                    <li onClick={() => this.onNavClicked('sent')}><i className="fa fa-paper-plane"></i><span>Sent</span> </li>
-                    <li onClick={() => this.onNavClicked('drafts')}><i className="fa fa-sticky-note"></i> <span>Drafts</span></li>
-                    <li onClick={() => this.onNavClicked('trash')}><i className="fa fa-trash"></i> <span>Rcycle Bin</span></li>
+                    <li className="flex" onClick={() => this.onNavClicked('inbox')}><i className="fa fa-inbox"></i><span>Inbox</span> </li>
+                    <li className="flex" onClick={() => this.onNavClicked('isStared')}><i className="fa fa-star"></i><span>Stared</span> </li>
+                    <li className="flex" onClick={() => this.onNavClicked('sent')}><i className="fa fa-paper-plane"></i><span>Sent</span> </li>
+                    <li className="flex" onClick={() => this.onNavClicked('drafts')}><i className="fa fa-sticky-note"></i> <span>Drafts</span></li>
+                    <li className="flex" onClick={() => this.onNavClicked('trash')}><i className="fa fa-trash"></i> <span>Rcycle Bin</span></li>
+                    {/* <li className="read-count-container"><div className="read-count" ><p width={`${this.getReadCount()}%`}>{this.getReadCount()} %</p></div> </li> */}
+                    <li className="read-count-container"><div className="read-count" ><p style={{ width: `${this.getReadCount()}%` }}>{this.getReadCount()} %</p></div> </li>
                 </ul>
-                <div className="read-counter">
-                    <p></p>
-                </div>
-            </section>
+
+            </section >
         )
     }
 }
