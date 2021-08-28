@@ -24,7 +24,7 @@ export class NoteText extends React.Component {
 
             <section className={`note-text flex ${note.isPinned ? 'pinned' : ''} `}
                 onMouseEnter={this.onHover} onMouseLeave={this.onExitHover} style={{ backgroundColor: color }}>
-                {note.isPinned && <img src="../../../img/pinned.png" />}
+                {note.isPinned && <img src="./././img/pinned.png" />}
                 <h1>{title} </h1>
                 <h3>{txt} </h3>
                 <div className="note-hover" style={{ opacity: isHover ? '1' : '0' }}>

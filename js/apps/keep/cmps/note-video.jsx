@@ -23,7 +23,7 @@ export class NoteVideo extends React.Component {
         return (
             <section className={`video-note ${note.isPinned ? 'pinned' : ''} `}
                 onMouseEnter={this.onHover} onMouseLeave={this.onExitHover} style={{ backgroundColor: color }}>
-                {note.isPinned && <img src="../../../img/pinned.png" />}
+                {note.isPinned && <img src="./././img/pinned.png" />}
                 <h1>{title}</h1>
                 <iframe width="100%" height="200px"
                     src={`https://www.youtube.com/embed/${youtubeId}`}>

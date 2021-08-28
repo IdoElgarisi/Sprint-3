@@ -50,7 +50,7 @@ export class NoteTodo extends React.Component {
         return (
             <section className={`todos-container ${note.isPinned ? 'pinned' : ''} `}
                 style={{ backgroundColor: color }}>
-                {note.isPinned && <img src="../../../img/pinned.png" />}
+                {note.isPinned && <img src="./././img/pinned.png" />}
                 <h1>{title}</h1>
                 <ul className="clean-list ">
                     {todos.map(todo => {
