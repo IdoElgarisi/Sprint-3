@@ -27,7 +27,7 @@ export class NoteImg extends React.Component {
         return (
             <section className={`image-container ${note.isPinned ? 'pinned' : ''} `}
                 onMouseEnter={this.onHover} onMouseLeave={this.onExitHover} style={{ backgroundColor: color }} >
-                {note.isPinned && <img src="../../../img/pinned.png" />}
+                {note.isPinned && <img src="./././img/pinned.png" />}
                 <h1>{title}</h1>
                 <img
                     className="note-img"

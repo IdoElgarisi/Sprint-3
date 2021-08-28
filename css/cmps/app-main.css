@@ -53,6 +53,7 @@
 .home-details p {
     padding: 1em;
     max-width: 200px;
+    padding: 30px;
 }
 
 @media (max-width: 450px) {
@@ -70,8 +71,20 @@
     }
 }
 
-/* @media (max-width: 850px) {
-    .home-details p{
-
+@media (max-width: 550px) {
+    .cards-title {
+        font-size: 1.5em;
     }
-} */
+}
+@media (max-width: 850px) {
+    .home-details p {
+        padding: 1em;
+        max-width: 200px;
+     }
+}
+
+@media (max-width: 850px) {
+    .home-image {
+        height: 50vh;
+    }
+}

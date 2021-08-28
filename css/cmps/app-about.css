@@ -5,6 +5,11 @@
     justify-content: center;
     gap: 10px;
     align-items: center;
+    color: #626262;
+}
+
+.about-main h1 {
+    font-family: 'lato-regular';
 }
 
 .cards-container {

@@ -6,3 +6,8 @@
     /* clip-path: polygon(100% 0, 100% 38%, 52% 89%, 18% 100%, 0% 38%); */
 }
 
+.home-main h1 {
+    color: #626262;
+    font-family: 'lato-regular';
+
+}
