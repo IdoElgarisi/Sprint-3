@@ -19,12 +19,12 @@ export class EmailPreview extends React.Component {
     render() {
         const { mail, onDeleteMail, onChangeMode } = this.props
         const { isExpand } = this.state
-        let color = emailService.getRandomColor()
+        // console.log(mail);
         return (
             <tr className="mail-details flex " >
                 {/* <td className="mail-icon"></td> */}
                 <td className="flex" >
-                    <div className="mail-icon" style={{ backgroundColor: color }}><p>{mail.from.charAt(0).toUpperCase()}</p></div>
+                    <div className="mail-icon" style={{ backgroundColor: mail.color }}><p>{mail.from.charAt(0).toUpperCase()}</p></div>
                     <NavLink to={`/emailApp/${mail.id}`} >
                         <div className="mail-title flex ">
                             <p className={`mail-subject ${mail.isRead ? 'read' : 'unread'} `}>{mail.status === 'sent' ? mail.to : mail.from}</p>

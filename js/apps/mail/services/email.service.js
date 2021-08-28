@@ -8,6 +8,7 @@ export const emailService = {
     changeMode,
     makeId,
     getRandomColor
+    
 }
 
 const email = {
@@ -134,7 +135,9 @@ const gMails = loadFromStorage('emailsDB') || [
         sentAt: 1651133930594,
         to: 'muki@muki.com',
         from: 'momo@momo.com',
+        fromName:'Momo Jordan',
         status: 'inbox',
+        color:getRandomColor(),
         labels: []
     },
     {
@@ -146,7 +149,9 @@ const gMails = loadFromStorage('emailsDB') || [
         sentAt: 1621133930594,
         to: 'muki@muki.com',
         from: 'momo@momo.com',
+        fromName:'Momo Jordan',
         status: 'inbox',
+        color:getRandomColor(),
         labels: []
     },
     {
@@ -158,6 +163,9 @@ const gMails = loadFromStorage('emailsDB') || [
         sentAt: 1551132030594,
         to: 'muki@muki.com',
         from: 'momo@momo.com',
+        fromName:'Momo Jordan',
+        color:getRandomColor(),
+
         status: 'inbox',
         labels: []
     },
@@ -170,6 +178,8 @@ const gMails = loadFromStorage('emailsDB') || [
         sentAt: 1551131930594,
         to: 'muki@muki.com',
         from: 'momo@momo.com',
+        fromName:'Momo Jordan',
+        color:getRandomColor(),
         status: 'trash',
         labels: []
     },
@@ -182,6 +192,9 @@ const gMails = loadFromStorage('emailsDB') || [
         sentAt: 1551033930594,
         to: 'muki@muki.com',
         from: 'momo@momo.com',
+        fromName:'Momo Jordan',
+        color:getRandomColor(),
+
         status: 'inbox',
         labels: []
     },
