@@ -14,7 +14,8 @@ export const keepService = {
     updateDoneTodo,
     updateNoteColor,
     setPinnedNote,
-    copyNote
+    copyNote,
+    getNoteById
 }
 
 function query(filterBy) {
@@ -86,7 +87,12 @@ function setPinnedNote(pinnedNote) {
 function getNoteId(note) {
     return notes.findIndex((currNote) => currNote.id === note.id)
 }
-
+function getNoteById(noteId) {
+    var note = notes.find((note) => {
+        return noteId === note.id
+    })
+    return Promise.resolve(note)
+}
 function updateNoteColor(currNote, color) {
     const noteIdx = getNoteId(currNote)
     notes[noteIdx].style.backgroundColor = color

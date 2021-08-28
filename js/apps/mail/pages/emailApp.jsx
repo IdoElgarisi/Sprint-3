@@ -7,7 +7,7 @@ import { EmailFilter } from '../cmps/emailFilter.jsx';
 import { SendEmail } from '../pages/sendMail.jsx'
 import { EmailDetails } from './emailDetails.jsx';
 
-
+import { keepService } from '../../keep/services/keepService.js';
 export class EmailApp extends React.Component {
     state = {
         mails: [],
@@ -17,11 +17,53 @@ export class EmailApp extends React.Component {
     };
 
     componentDidMount() {
+
         this.loadEmails();
         this.onSetSort('newest')
+        const { noteId } = this.props.match.params
+        if (noteId) {
+            (keepService.getNoteById(noteId))
+                .then((note) => { this.makeNoteMail(note) })
+            // .then((res) => this.addMailToNotes(res))
+        }
 
     }
+    getnoteBody(note) {
+        if (note.type === 'note-todo') return note.info.todos.map((todo) => todo.txt)
+        if (note.type === 'note-video') {
+            return (<iframe width="100%" height="200px"
+                src={`https://www.youtube.com/embed/${note.info.youtubeId}`}>
+            </iframe>)
+        }
+        if (note.type === 'note-img') {
+            return (<img height="300px" src={note.info.url} />)
+        }
 
+
+
+    }
+    makeNoteMail(note) {
+        const { title } = note.info
+        let body;
+        body = Object.values(note.info)[1]
+        const mailNote = {
+            id: emailService.makeId(),
+            subject: title,
+            body: this.getnoteBody(note),
+            isRead: false,
+            isStared: false,
+            sentAt: Date.now(),
+            to: 'b',
+            from: 'a',
+            status: 'inbox',
+            labels: []
+        }
+        emailService.addMail(mailNote)
+            .then(() => {
+                this.loadEmails()
+                this.props.history.push('/emailApp')
+            })
+    }
     loadEmails = () => {
         this.setState({ selectedEmail: null })
         emailService.query(this.state.filterBy).then((mails) => {
@@ -59,7 +101,7 @@ export class EmailApp extends React.Component {
         const { mails, selectedEmail } = this.state;
         return (
             <section className="mails-layout"  >
-                   {/* <div className="screen" ></div> */}
+                {/* <div className="screen" ></div> */}
                 <section className="mails-layout" >
 
                     <header className=" email-header flex" >
@@ -81,6 +123,7 @@ export class EmailApp extends React.Component {
                         <main className="mails-main-layout" >
                             <EmailList onChangeMode={this.onChangeMode} mails={mails} onReadBtn={this.onReadBtn} onDeleteMail={this.onDeleteMail} />
                             <Switch>
+
                                 <Route path="/emailApp/newMail" loadEmails={this.loadEmails} component={SendEmail} />
                                 <Route path="/emailApp/:mailId" component={EmailDetails} />
                             </Switch>

@@ -8,7 +8,7 @@ export class SendEmail extends React.Component {
     }
 
     state = {
-        id: `${this.makeId}`,
+        id: `${emailService.makeId()}`,
         user: `${this.loggedinUser.fullname}`,
         subject: '',
         body: '',
@@ -68,17 +68,7 @@ export class SendEmail extends React.Component {
 
         }, 100);
     }
-    makeId = (length = 6) => {
-        var txt = '';
-        var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-        for (var i = 0; i < length; i++) {
-            txt += possible.charAt(Math.floor(Math.random() * possible.length));
-        }
-
-        return txt;
-    }
-
+  
     render() {
         return <section className=" new-mail flex">
             <main className="new-mail-layout">

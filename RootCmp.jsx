@@ -18,6 +18,7 @@ export function App() {
       <main>
         <Switch>
           <Route path="/keepApp/:mailId" component={KeepApp} />
+          <Route path="/emailApp/:noteId" component={EmailApp} />
           <Route path="/emailApp" component={EmailApp} />
           <Route path="/keepApp" component={KeepApp} />
           <Route path="/" component={Home} />

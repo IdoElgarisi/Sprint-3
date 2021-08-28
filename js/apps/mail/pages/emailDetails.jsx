@@ -5,6 +5,7 @@ export class EmailDetails extends React.Component {
     state = { mail: null }
     componentDidMount() {
         this.loadMail()
+        
 
     }
 
@@ -53,7 +54,7 @@ export class EmailDetails extends React.Component {
                         <p>{mail.body}</p>
                     </div>
                     <div className="btns-container">
-                        <NavLink exact to={`keepApp/${mail.id}`}><button>Notes</button></NavLink>
+                        <NavLink to={`/keepApp/${mail.id}`}><button>Notes</button></NavLink>
                     </div>
                 </section>
             </main>

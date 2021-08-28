@@ -60,7 +60,7 @@ export class NoteSetup extends React.Component {
     }
     onSendMail = () => {
         const { note } = this.state
-        console.log(note);
+        // console.log(note);
 
 
         // <button><Link to={`/mail/compose/${note.id}`}>
