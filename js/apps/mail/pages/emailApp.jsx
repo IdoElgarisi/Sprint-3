@@ -6,7 +6,6 @@ import { EmailNav } from '../cmps/emailSideNav.jsx';
 import { EmailFilter } from '../cmps/emailFilter.jsx';
 import { SendEmail } from '../pages/sendMail.jsx'
 import { EmailDetails } from './emailDetails.jsx';
-
 import { keepService } from '../../keep/services/keepService.js';
 export class EmailApp extends React.Component {
     state = {
@@ -115,7 +114,10 @@ export class EmailApp extends React.Component {
                         </section>
                         <header className=" email-header flex " >
                             <section className="mails-list-header flex ">
-                                <h1> <i className="fa fa-envelope"></i> Ail App</h1>
+                                <div className="flex m-image">
+                                    <img src="././././img/m-icon.png" />
+                                    <h1>Ail</h1>
+                                </div>
                                 <div className="filter-sort-container">
                                     <EmailFilter onSetFilter={this.onSetFilter} />
                                     <EmailSort onSetSort={this.onSetSort} />

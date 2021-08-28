@@ -3,7 +3,7 @@ import { storageService } from '../../../services/storageService.js'
 import { utilService } from '../../../services/util.service.js'
 
 
-const KEY = 'notes'
+const KEY = 'notesDB'
 const notes = createNotes()
 // const books = require()
 export const keepService = {

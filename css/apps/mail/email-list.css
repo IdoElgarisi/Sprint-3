@@ -6,6 +6,8 @@
     /* margin-inline-start: 5px; */
 }
 
+
+
 @media (max-width:450px) {
     .email-list {
         width: 95%;
@@ -15,10 +17,14 @@
         display: flex;
         justify-self: center;
     }
+    .email-list .m-image h1 {
+        margin: 0;
+        align-self: flex-end;
+        padding-bottom: 5px;
+    }
 }
 
 @media (min-width:450px) {
-
     .email-list {
         max-width: 650px;
         width: 100%;
@@ -28,6 +34,7 @@
         background-color: #e6eff6;
     }
 }
+
 @media (min-width:700px) {
     .email-list {
         justify-self: center;

@@ -25,6 +25,7 @@ export class NoteSetup extends React.Component {
         const { onExitHover } = this.props
         keepService.updateNoteColor(note, color)
             .then(() => onExitHover())
+        this.togglePalette()
     }
 
     onDeleteNote = () => {

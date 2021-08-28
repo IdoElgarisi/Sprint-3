@@ -76,7 +76,10 @@ border: none;
 }
 
 .mails-list-header h1 {
-    display: none;
+    /* display: none; */
+    margin: 0;
+    align-self: flex-end;
+    padding-bottom: 5px;
 }
 
 @media (max-width:450px) {
