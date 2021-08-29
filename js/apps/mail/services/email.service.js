@@ -122,7 +122,7 @@ function getRandomColor() {
     return color;
 }
 function makeTimeStamp(){
-  let   min = 1000000;
+  let   min = Date.now()-15500012300;
     let max = Date.now()-1000;
     let num=Math.floor(Math.random() * (max - min + 1) +min);
     return num
