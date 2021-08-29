@@ -92,6 +92,7 @@
 /* .msg-container {
     padding: 5px;
 } */
+
 .msg-container {
     font-size: 1.2rem;
     resize: none;
@@ -102,15 +103,26 @@
     height: 35vh;
     border-bottom: 1px solid rgb(190, 190, 190);
 }
+
 .msg-container p {
     margin: 0;
 }
-.btns-container{
+
+.btns-container {
     max-height: 100px;
 }
-.msg-container{
+
+.btns-container button {
+    background-color: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.msg-container {
     height: 65vh;
 }
+
 @media(max-width:450px) {
     .full-mail-display {
         top: 100px;
@@ -124,7 +136,6 @@
     .btns-container{
         height: 100px;
     } */
-
 }
 
 @media(min-width:450px) {
@@ -144,7 +155,7 @@
         top: 50vh;
         height: 50vh;
     }
-    .msg-container{
+    .msg-container {
         height: 30vh;
     }
 }
@@ -157,7 +168,7 @@
         height: 50vh;
         height: 50vh;
     }
-    .msg-container{
+    .msg-container {
         height: 30vh;
     }
 }
