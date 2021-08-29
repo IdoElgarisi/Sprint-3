@@ -47,7 +47,7 @@ function makeTimeStamp(){
     max = Date.now();
     let num=Math.floor(Math.random() * (max - min + 1) +min);
     
-    return `165113${num}`
+    return num
 }
 function makeUserLorem() {
     var words = ['Google ', 'Spotify ', 'Puki Levi', 'Muki Cohen', 'GitHub ', 'YouTube ', 'Israel Israeli', 'Shuki Muki'];
